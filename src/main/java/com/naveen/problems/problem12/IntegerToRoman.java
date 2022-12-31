@@ -21,6 +21,6 @@ public class IntegerToRoman {
     }
 
     public static void main(String[] args) {
-        System.out.println(convert(3999));
+        System.out.println(intToRoman(3999));
     }
 }
