@@ -5,10 +5,10 @@ public class Solution {
         char[] c = s.toCharArray();
         int st = 0, end = c.length - 1;
 
-        while (st < end) {
-            while (st < end && !Character.isAlphabetic(c[st]) && !Character.isDigit(c[st])) st++;
-            while (st < end && !Character.isAlphabetic(c[end]) && !Character.isDigit(c[end])) end--;
-            if (st <= end && Character.toLowerCase(c[st]) == Character.toLowerCase(c[end])) {
+        while (st <= end) {
+            if (!Character.isLetterOrDigit(c[st])) st++;
+            else if (!Character.isLetterOrDigit(c[end])) end--;
+            else if (Character.toLowerCase(c[st]) == Character.toLowerCase(c[end])) {
                 st++;
                 end--;
             }
