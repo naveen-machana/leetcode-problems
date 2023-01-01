@@ -7,7 +7,7 @@ public class RomanToInteger {
     static Map<Character, Integer> charToInt = new HashMap<>();
     static {
         charToInt.put('I', 1);
-        charToInt.put('V', 1);
+        charToInt.put('V', 5);
         charToInt.put('X', 10);
         charToInt.put('L', 50);
         charToInt.put('C', 100);
