@@ -1,11 +1,16 @@
-package com.naveen.problems.problem207;
+package com.naveen.problems.problem210;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
-// https://leetcode.com/problems/course-schedule/
+// https://leetcode.com/problems/course-schedule-ii/
+// exactly same code as course-schedule
 // topological sorting
 public class Solution {
-    public boolean canFinish(int n, int[][] order) {
+
+    public int[] findOrder(int n, int[][] order) {
         List<List<Integer>> g = new ArrayList<>();
 
         for (int i = 0; i < n; i++) g.add(new ArrayList<>());
@@ -32,6 +37,6 @@ public class Solution {
                     q.offer(adj);
         }
 
-        return topoindex == n;
+        return topoindex == n ? topo : new int[]{};
     }
 }
