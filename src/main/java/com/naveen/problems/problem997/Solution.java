@@ -35,11 +35,11 @@ public class Solution {
         int candidate = st;
 
         for (int i = 1; i <= n; i++) {
-            if (i != candidate && !trustGraph[i][candidate]) {
-                return -1;
-            }
-            if (i != candidate && trustGraph[candidate][i]) {
-                return -1;
+            if (i != candidate) {
+                if (!trustGraph[i][candidate]
+                        || trustGraph[candidate][i]) {
+                    return -1;
+                }
             }
         }
 
