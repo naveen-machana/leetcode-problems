@@ -26,9 +26,10 @@ public class Solution {
         visited[v] = true;
 
         for (int adj : g.get(v)) {
-            if (!visited[adj] && cycle(g, adj, v, visited))
-                return true;
-
+            if (!visited[adj]) {
+                if (cycle(g, adj, v, visited))
+                    return true;
+            }
             else if (parent != adj)
                 return true;
         }
