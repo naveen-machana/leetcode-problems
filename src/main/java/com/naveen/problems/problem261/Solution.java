@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 // https://www.lintcode.com/problem/178/
+// 1. should be connected means, we should be able to reach every node from a given node
+// 2. there should be no cycle
 public class Solution {
     public boolean validTree(int n, int[][] edges) {
         boolean[] visited = new boolean[n];
@@ -15,11 +17,10 @@ public class Solution {
         for (int[] e : edges)
             addEdge(g, e);
 
-        for (int i = 0; i < n; i++) {
-            if (!visited[i] && cycle(g, i, -1, visited))
-                return true;
-        }
-        return false;
+        if (cycle(g, 0, -1, visited)) return false;
+        for (int i = 0; i < visited.length; i++)
+            if(!visited[i]) return false;
+        return true;
     }
 
     private boolean cycle(List<List<Integer>> g, int v, int parent, boolean[] visited) {
