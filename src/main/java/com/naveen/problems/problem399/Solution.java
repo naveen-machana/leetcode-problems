@@ -37,10 +37,8 @@ public class Solution {
         for (int i = 0; i < e.size(); i++) {
             String src = e.get(i).get(0);
             String dst = e.get(i).get(1);
-            g.putIfAbsent(src, new HashMap<>());
-            g.putIfAbsent(dst, new HashMap<>());
-            g.get(src).put(dst, v[i]);
-            g.get(dst).put(src, 1 / v[i]);
+            g.computeIfAbsent(src, k -> new HashMap<>()).put(dst, v[i]);
+            g.computeIfAbsent(dst, k -> new HashMap<>()).put(src, 1 / v[i]);
         }
         return g;
     }

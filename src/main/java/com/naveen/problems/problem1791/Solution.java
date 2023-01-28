@@ -23,9 +23,8 @@ public class Solution {
         }
 
         for (int i = 1; i < count.length; i++) {
-            if (count[i] == maxvertex - 1) {
+            if (count[i] == maxvertex - 1)
                 return i;
-            }
         }
         return -1;
     }
