@@ -17,7 +17,6 @@ public class Solution {
     public List<Integer> eventualSafeNodes(int[][] g) {
         boolean[] visited = new boolean[g.length];
         boolean[] pathvis = new boolean[g.length];
-        boolean[] check = new boolean[g.length];
 
         for (int i = 0; i < g.length; i++) {
             if (!visited[i]){
