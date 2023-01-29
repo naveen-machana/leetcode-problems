@@ -34,7 +34,7 @@ public class Solution {
             int curp = cur[1], curv = cur[0];
             if (visited[curv]) continue;
 
-            res += curp;
+            res += curp; count++;
             visited[curv] = true;
 
             for (List<Integer> adj : g.get(curv)) {
