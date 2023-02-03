@@ -24,18 +24,13 @@ public class Solution {
         int n = a.length, k, l;
 
         for (k = n - 2; k >= 0; k--) {
-            if (a[k] < a[k + 1]) {
-                break;
-            }
+            if (a[k] < a[k + 1]) break;
         }
 
-        if (k < 0) {
-            reverse(a, 0, n);
-        }
+        if (k < 0) reverse(a, 0, n);
         else {
             for (l = n - 1; l > k; l--) {
-                if (a[l] > a[k])
-                    break;
+                if (a[l] > a[k]) break;
             }
             swap(a, l, k);
             reverse(a, k + 1, n);
