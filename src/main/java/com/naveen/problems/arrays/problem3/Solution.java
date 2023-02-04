@@ -7,6 +7,7 @@ import java.util.Map;
 // 3. Longest Substring Without Repeating Characters
 // Given a string s, find the length of the longest substring
 // without repeating characters.
+// try for : abcbad
 public class Solution {
     public static void main(String[] args) {
         Solution s = new Solution();

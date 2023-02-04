@@ -1,4 +1,4 @@
-package com.naveen.problems.problem876;
+package com.naveen.problems.linkedlist.problem876;
 
 public class Solution {
 
@@ -26,7 +26,6 @@ public class Solution {
             s = s.next;
         }
 
-        if (f != null) s = s.next;
         return s;
     }
 }
