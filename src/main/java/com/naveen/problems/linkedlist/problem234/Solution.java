@@ -1,4 +1,4 @@
-package com.naveen.problems.problem234;
+package com.naveen.problems.linkedlist.problem234;
 
 import java.util.ArrayDeque;
 import java.util.Stack;
