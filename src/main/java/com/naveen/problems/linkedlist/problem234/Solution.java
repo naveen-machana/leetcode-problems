@@ -21,35 +21,36 @@ class Solution {
       ListNode(int val) { this.val = val; }
       ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
+
     public boolean isPalindrome(ListNode head) {
-        ListNode fast = head, slow = head;
-        while (fast != null && fast.next != null) {
-            fast = fast.next.next;
-            slow = slow.next;
+        ListNode f = head, s = head;
+        while (f != null && f.next != null) {
+            f = f.next.next;
+            s = s.next;
+        }
+        if (f != null) s = s.next;
+
+        ListNode two = reversed(s);
+        ListNode one = head;
+        while (one != null && two != null) {
+            if (one.val != two.val) return false;
+            else {
+                one = one.next;
+                two = two.next;
+            }
         }
 
-        // if list length is odd, then let first half contain one extra node
-        if (fast != null) slow = slow.next;
-        slow = reverse(slow);
-
-        ListNode temp = head;
-        while (temp != null && slow != null) {
-            if (temp.val != slow.val) return false;
-            temp = temp.next;
-            slow = slow.next;
-        }
-
-        return true;
+        return false;
     }
 
-    private ListNode reverse(ListNode head) {
-        ListNode temp = head, reversed = null;
-        while (temp != null) {
-            ListNode next = temp.next;
-            temp.next = reversed;
-            reversed = temp;
-            temp = next;
+    ListNode reversed(ListNode head) {
+        ListNode temp = null;
+        while (head != null) {
+            ListNode next = head.next;
+            head.next = temp;
+            temp = head;
+            head = next;
         }
-        return reversed;
+        return temp;
     }
 }
