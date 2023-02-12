@@ -1,6 +1,6 @@
-package com.naveen.problems.problem125;
+package com.naveen.problems.strings;
 
-public class Solution {
+public class Problem125_ValidPalindrome {
     public static boolean isPalindrome(String s) {
         char[] c = s.toCharArray();
         int st = 0, end = c.length - 1;
