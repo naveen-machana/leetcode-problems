@@ -12,8 +12,8 @@ public class Solution {
     public int findDuplicate3(int[] a) {
         while(a[0] != a[a[0]]) {
             int next = a[0];
-            a[0] = a[a[0]];
-            a[a[0]] = next;
+            a[0] = a[next];
+            a[next] = next;
         }
         return a[0];
     }
