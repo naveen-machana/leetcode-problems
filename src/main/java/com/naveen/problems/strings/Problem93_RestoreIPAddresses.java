@@ -51,4 +51,29 @@ public class Problem93_RestoreIPAddresses {
         if (value.charAt(0) == '0') return false;
         return Integer.parseInt(value) <= 255;
     }
+
+    public List<String> restoreIpAddresses2(String s) {
+        List<String> res = new ArrayList<>();
+        int n = s.length();
+        for (int a = 1; a <= 3; a++) {
+            for (int b = 1; b <= 3; b++) {
+                for (int c = 1; c <= 3; c++) {
+                    for (int d = 1; d <= 3; d++) {
+                        if (a + b + c + d == n) {
+                            String A = s.substring(0, a);
+                            String B = s.substring(a, a + b);
+                            String C = s.substring(a + b, a + b + c);
+                            String D = s.substring(a + b + c, a + b + c + d);
+                            int ai = Integer.parseInt(A), bi = Integer.parseInt(B), ci = Integer.parseInt(C), di = Integer.parseInt(D);
+                            if (ai <= 255 && bi <= 255 && ci <= 255 && di <= 255
+                                    && String.valueOf(ai).length() + String.valueOf(bi).length() + String.valueOf(ci).length() + String.valueOf(di).length() == n) {
+                                res.add(A + "." + B + "." + C + "." + D);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return res;
+    }
 }
