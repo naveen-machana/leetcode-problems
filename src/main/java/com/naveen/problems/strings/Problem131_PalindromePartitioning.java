@@ -18,28 +18,50 @@ public class Problem131_PalindromePartitioning {
         return res;
     }
 
-    void generate(String s, int n, List<String> cur, List<List<String>> res) {
-        if (n == 0) {
-            List<String> temp = new ArrayList<>();
-            for (int i = cur.size() - 1; i >= 0; i--)
-                temp.add(cur.get(i));
-            res.add(temp);
+    void generate(String s, int st, List<String> cur, List<List<String>> res) {
+        if (st >= s.length()) {
+            res.add(new ArrayList<>(cur));
             return;
         }
 
-        for (int i = n - 1; i >= 0; i--) {
-            String temp = s.substring(0, i);
-            String rest = s.substring(i);
-            if (isPalindrome(rest)) {
-                cur.add(rest);
-                generate(temp, temp.length(), cur, res);
+        for (int end = st; end < s.length(); end++) {
+            if (isPalindrome(s, st, end)) {
+                cur.add(s.substring(st, end + 1));
+                generate(s, end + 1, cur, res);
                 cur.remove(cur.size() - 1);
             }
         }
     }
 
-    boolean isPalindrome(String a) {
-        if (a.length() == 0) return false;
-        return a.equals(new StringBuilder(a).reverse().toString());
+    boolean isPalindrome(String a, int st, int end) {
+        while (st < end) {
+            if (a.charAt(st++) != a.charAt(end--))
+                return false;
+        }
+        return true;
+    }
+
+    public List<List<String>> partition2(String s) {
+        List<List<String>> res = new ArrayList<>();
+        List<String> cur = new ArrayList<>();
+        boolean[][] dp = new boolean[s.length()][s.length()];
+        generate2(s, s.length(), cur, res, dp);
+        return res;
+    }
+
+    void generate2(String s, int st, List<String> cur, List<List<String>> res, boolean[][] dp) {
+        if (st >= s.length()) {
+            res.add(new ArrayList<>(cur));
+            return;
+        }
+
+        for (int end = st; end < s.length(); end++) {
+            if (s.charAt(st) == s.charAt(end) && (end - st <= 2 || dp[st + 1][end - 1])) {
+                dp[st][end] = true;
+                cur.add(s.substring(st, end + 1));
+                generate(s, end + 1, cur, res);
+                cur.remove(cur.size() - 1);
+            }
+        }
     }
 }
