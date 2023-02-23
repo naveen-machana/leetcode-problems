@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays.problem74;
+package com.naveen.problems.binarysearch;
 
 // https://leetcode.com/problems/search-a-2d-matrix/
 // 74. Search a 2D Matrix
@@ -13,7 +13,7 @@ package com.naveen.problems.arrays.problem74;
 // 5 6   7  8
 // 9 10 11 12
 // 10 / 4, 10
-public class Solution {
+public class Problem74_SearchA2Dmatrix {
     public boolean searchMatrix(int[][] a, int target) {
         int m = a.length, n = a[0].length;
         int st = 0, end = m * n - 1;

@@ -7,7 +7,7 @@ package com.naveen.problems.arrays.problem287;
 // There is only one repeated number in nums, return this repeated number.
 //
 // You must solve the problem without modifying the array nums and uses only constant extra space
-public class Solution {
+public class   Problem287_FindDuplicate {
     // 1. if modifications are allowed
     public int findDuplicate3(int[] a) {
         while(a[0] != a[a[0]]) {

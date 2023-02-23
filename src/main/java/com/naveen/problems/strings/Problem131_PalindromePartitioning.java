@@ -59,7 +59,7 @@ public class Problem131_PalindromePartitioning {
             if (s.charAt(st) == s.charAt(end) && (end - st <= 2 || dp[st + 1][end - 1])) {
                 dp[st][end] = true;
                 cur.add(s.substring(st, end + 1));
-                generate(s, end + 1, cur, res);
+                generate2(s, end + 1, cur, res, dp);
                 cur.remove(cur.size() - 1);
             }
         }
