@@ -1,4 +1,4 @@
-package com.naveen.problems.linkedlist;
+package com.naveen.problems.heaps;
 
 public class ListNode {
     public int val;
