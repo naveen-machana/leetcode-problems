@@ -1,6 +1,6 @@
-package com.naveen.problems.deque;
+package com.naveen.problems.heaps;
 
-import java.util.ArrayDeque;
+
 import java.util.PriorityQueue;
 
 /*
@@ -25,23 +25,17 @@ Window position                Max
 
 * */
 public class Problem239_SlidingWindowMaximum {
-
     public int[] maxSlidingWindow(int[] a, int k) {
         int n = a.length, rp = 0;
         int[] res = new int[n - k + 1];
-        ArrayDeque<Integer> dq = new ArrayDeque<>();
-        for (int i = 0; i < k; i++) {
-            while (!dq.isEmpty() && a[dq.peekLast()] < a[i]) dq.pollLast();
-            dq.offerLast(i);
-        }
-
+        PriorityQueue<Integer> pq = new PriorityQueue<>((o, t) -> a[t] - a[o]);
+        for (int i = 0; i < k; i++) pq.offer(i);
         for (int i = k; i < n; i++) {
-            res[rp++] = a[dq.peekFirst()];
-            while (!dq.isEmpty() && dq.peekFirst() <= i - k) dq.pollFirst();
-            while (!dq.isEmpty() && a[dq.peekLast()] < a[i]) dq.pollLast();
-            dq.offerLast(i);
+            res[rp++] = a[pq.peek()];
+            pq.remove(i - k);
+            pq.offer(i);
         }
-        res[rp++] = a[dq.peekFirst()];
+        res[rp++] = a[pq.peek()];
         return res;
     }
 }
