@@ -1,6 +1,4 @@
-package com.naveen.problems.stack;
-
-import java.util.ArrayDeque;
+package com.naveen.problems.greedy;
 
 /*
 * https://leetcode.com/problems/container-with-most-water/
