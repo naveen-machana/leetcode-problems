@@ -25,7 +25,7 @@ public class Problem36_ValidSudoku {
                 if (board[i][j] != '.') {
                     if (!seen.add(board[i][j] + " in row " + i) ||
                         !seen.add(board[i][j] + " in col " + j) ||
-                        !seen.add(board[i][j] + " in block " + ((i / 3) * 3 + j / 3)))
+                        !seen.add(board[i][j] + " in block " + (i / 3 + " - " + j / 3)))
                         return false;
                 }
             }
