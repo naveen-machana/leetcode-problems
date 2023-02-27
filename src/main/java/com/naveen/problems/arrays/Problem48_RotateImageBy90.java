@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays.problem48;
+package com.naveen.problems.arrays;
 
 // https://leetcode.com/problems/rotate-image/
 // 48. Rotate Image
@@ -6,7 +6,7 @@ package com.naveen.problems.arrays.problem48;
 //
 // You have to rotate the image in-place, which means you have to modify the input 2D matrix directly.
 // DO NOT allocate another 2D matrix and do the rotation.
-public class Solution {
+public class Problem48_RotateImageBy90 {
     public void rotate(int[][] a) {
         int n = a.length;
 
