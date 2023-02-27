@@ -12,35 +12,56 @@ import java.util.*;
 // nums[a] + nums[b] + nums[c] + nums[d] == target
 public class Problem18_4Sum_KSum {
     public List<List<Integer>> fourSum(int[] nums, int target) {
-        return ksum(nums, 4, target, 0);
+        Arrays.sort(nums);
+        return kSum(nums, target, 0, 4);
     }
 
-    private List<List<Integer>> ksum(int[] a, int k, int target, int start) {
+    public List<List<Integer>> kSum(int[] nums, long target, int start, int k) {
         List<List<Integer>> res = new ArrayList<>();
 
-        if (start == a.length) return res;
-        if (k == 2) return twoSum(a, start, target);
+        // If we have run out of numbers to add, return res.
+        if (start == nums.length) {
+            return res;
+        }
 
-        for (int i = start; i < a.length; i++) {
-            for (List<Integer> subset : ksum(a, k - 1, target - a[i], i + 1)) {
-                res.add(new ArrayList<>(Arrays.asList(a[i])));
-                res.get(res.size() - 1).addAll(subset);
+        // There are k remaining values to add to the sum. The
+        // average of these values is at least target / k.
+        long average_value = target / k;
+
+        // We cannot obtain a sum of target if the smallest value
+        // in nums is greater than target / k or if the largest
+        // value in nums is smaller than target / k.
+        if  (nums[start] > average_value || average_value > nums[nums.length - 1]) {
+            return res;
+        }
+
+        if (k == 2) {
+            return twoSum(nums, target, start);
+        }
+
+        for (int i = start; i < nums.length; ++i) {
+            if (i == start || nums[i - 1] != nums[i]) {
+                for (List<Integer> subset : kSum(nums, target - nums[i], i + 1, k - 1)) {
+                    res.add(new ArrayList<>(Arrays.asList(nums[i])));
+                    res.get(res.size() - 1).addAll(subset);
+                }
             }
         }
+
         return res;
     }
 
-    private List<List<Integer>> twoSum(int[] a, int start, int target) {
+    public List<List<Integer>> twoSum(int[] nums, long target, int start) {
         List<List<Integer>> res = new ArrayList<>();
-        Set<Integer> s = new HashSet<>();
+        Set<Long> s = new HashSet<>();
 
-        for (int i = start; i < a.length; i++) {
-            if (res.isEmpty() || res.get(res.size() - 1).get(1) != a[i]) {
-                if (s.contains(target - a[i])) {
-                    res.add(Arrays.asList(target - a[i], a[i]));
+        for (int i = start; i < nums.length; ++i) {
+            if (res.isEmpty() || res.get(res.size() - 1).get(1) != nums[i]) {
+                if (s.contains(target - nums[i])) {
+                    res.add(Arrays.asList((int)target - nums[i], nums[i]));
                 }
             }
-            s.add(a[i]);
+            s.add((long)nums[i]);
         }
 
         return res;
