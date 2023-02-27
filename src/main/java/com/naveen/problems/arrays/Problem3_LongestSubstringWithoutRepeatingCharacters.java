@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays.problem3;
+package com.naveen.problems.arrays;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,9 +8,9 @@ import java.util.Map;
 // Given a string s, find the length of the longest substring
 // without repeating characters.
 // try for : abcbad
-public class Solution {
+public class Problem3_LongestSubstringWithoutRepeatingCharacters {
     public static void main(String[] args) {
-        Solution s = new Solution();
+        Problem3_LongestSubstringWithoutRepeatingCharacters s = new Problem3_LongestSubstringWithoutRepeatingCharacters();
         s.lengthOfLongestSubstring("abcabcbb");
     }
     public int lengthOfLongestSubstring(String s) {

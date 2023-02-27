@@ -1,9 +1,7 @@
-package com.naveen.problems.arrays.problem1;
+package com.naveen.problems.arrays;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 // https://leetcode.com/problems/two-sum/
 // Given an array of integers nums and an integer target,
@@ -12,7 +10,7 @@ import java.util.Set;
 // You may assume that each input would have exactly one solution, and you may not use the same element twice.
 //
 // You can return the answer in any order.
-public class Solution {
+public class Problem1_TwoSum {
     public int[] twoSum(int[] nums, int target) {
         int[] res = new int[2];
         Map<Integer, Integer> map = new HashMap<>();

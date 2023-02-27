@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays.problem18;
+package com.naveen.problems.arrays;
 
 import java.util.*;
 
@@ -10,7 +10,7 @@ import java.util.*;
 // 0 <= a, b, c, d < n
 // a, b, c, and d are distinct.
 // nums[a] + nums[b] + nums[c] + nums[d] == target
-public class Solution {
+public class Problem18_4Sum_KSum {
     public List<List<Integer>> fourSum(int[] nums, int target) {
         return ksum(nums, 4, target, 0);
     }

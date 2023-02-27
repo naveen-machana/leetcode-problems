@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays.problem15;
+package com.naveen.problems.arrays;
 
 import java.util.*;
 
@@ -8,7 +8,7 @@ import java.util.*;
 // such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
 //
 // Notice that the solution set must not contain duplicate triplets.
-public class Solution {
+public class Problem15_3Sum {
     public List<List<Integer>> threeSum(int[] a) {
         Set<List<Integer>> res = new HashSet<>();
         int n = a.length;
