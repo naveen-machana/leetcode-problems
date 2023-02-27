@@ -1,11 +1,9 @@
-package com.naveen.problems.arrays.problem53;
+package com.naveen.problems.arrays;
 
 // https://leetcode.com/problems/maximum-subarray/
 // 53. Maximum Subarray
-// Given an integer array nums, find the
-//subarray
-// with the largest sum, and return its sum.
-public class Solution {
+// Given an integer array nums, find the subarray with the largest sum, and return its sum.
+public class Problem53_MaxSumSubarray {
     public int maxSubArray(int[] a) {
         int n = a.length;
         int maxSoFar = a[0], sum = a[0], curMax;

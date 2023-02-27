@@ -1,11 +1,11 @@
-package com.naveen.problems.arrays.problem50;
+package com.naveen.problems.arrays;
 
 import java.util.HashMap;
 import java.util.Map;
 
 // https://leetcode.com/problems/powx-n/
 // Implement pow(x, n), which calculates x raised to the power n (i.e., xn).
-public class Solution {
+public class Problem50_PowerXN {
     public double myPow(double x, int n) {
 
         long nn = n < 0 ? -n : n;
