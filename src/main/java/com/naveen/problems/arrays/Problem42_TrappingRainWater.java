@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays.problem42;
+package com.naveen.problems.arrays;
 
 import java.util.ArrayDeque;
 
@@ -6,7 +6,7 @@ import java.util.ArrayDeque;
 // 42. Trapping Rain Water
 // Given n non-negative integers representing an elevation map where the width of each bar is 1,
 // compute how much water it can trap after raining.
-public class Solution {
+public class Problem42_TrappingRainWater {
     public int trap1(int[] a) {
         int n = a.length;
         int[] left = new int[n], right = new int[n];
