@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays.problem31;
+package com.naveen.problems.arrays;
 
 // https://leetcode.com/problems/next-permutation/
 // A permutation of an array of integers is an arrangement of its members into a sequence or linear order.
@@ -18,22 +18,20 @@ package com.naveen.problems.arrays.problem31;
 //Given an array of integers nums, find the next permutation of nums.
 //
 //The replacement must be in place and use only constant extra memory.
-public class Solution {
+public class Problem31_NextPermutation {
     public void nextPermutation(int[] a) {
         if (a.length <= 1) return;
-        int n = a.length, k, l;
-
-        for (k = n - 2; k >= 0; k--) {
-            if (a[k] < a[k + 1]) break;
+        int n = a.length, k = 0, l;
+        for (l = n - 2; l >= 0; l--) {
+            if (a[l] < a[l + 1]) break;
         }
-
-        if (k < 0) reverse(a, 0, n);
+        if (l < 0) reverse(a, 0, n);
         else {
-            for (l = n - 1; l > k; l--) {
-                if (a[l] > a[k]) break;
+            for (k = n - 1; k > l; k--) {
+                if (a[k] > a[l]) break;
             }
             swap(a, l, k);
-            reverse(a, k + 1, n);
+            reverse(a, l + 1, n);
         }
     }
 
