@@ -55,10 +55,8 @@ public class Problem27_RemoveElement {
 
         int st = -1, tail = 0, n = a.length;
         while (tail < n) {
-            if (a[tail] != val) {
-                swap(a, st + 1, tail);
-               st++;
-            }
+            if (a[tail] != val)
+                swap(a, ++st, tail);
             tail++;
         }
         return st + 1;

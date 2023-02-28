@@ -1,6 +1,4 @@
-package com.naveen.problems.arrays.problem121;
-
-import java.util.ArrayDeque;
+package com.naveen.problems.arrays;
 
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 // 121. Best Time to Buy and Sell Stock
@@ -10,7 +8,7 @@ import java.util.ArrayDeque;
 // day in the future to sell that stock.
 //
 //Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
-public class Solution {
+public class Problem121_BestTimeToBuyAndSellStock {
     public int maxProfit(int[] a) {
         if (a.length <= 1) return 0;
         int minEle = a[0], max = 0;

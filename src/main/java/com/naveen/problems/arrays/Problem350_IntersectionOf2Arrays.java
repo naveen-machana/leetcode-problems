@@ -1,4 +1,4 @@
-package com.naveen.problems.binarysearch;
+package com.naveen.problems.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
