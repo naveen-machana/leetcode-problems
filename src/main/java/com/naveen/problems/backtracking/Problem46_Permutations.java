@@ -36,4 +36,18 @@ public class Problem46_Permutations {
         a[i] = a[j];
         a[j] = t;
     }
+
+    private void permutations2(int[] a, List<List<Integer>> res, List<Integer> cur) {
+        if (cur.size() == a.length) {
+            res.add(new ArrayList<>(cur));
+            return;
+        }
+
+        for (int i = 0; i < a.length; i++) {
+            if (cur.contains(a[i])) continue;
+            cur.add(a[i]);
+            permutations2(a, res, cur);
+            cur.remove(cur.size() - 1);
+        }
+    }
 }

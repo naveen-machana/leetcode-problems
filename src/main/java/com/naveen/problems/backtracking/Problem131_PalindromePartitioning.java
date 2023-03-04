@@ -1,4 +1,4 @@
-package com.naveen.problems.strings;
+package com.naveen.problems.backtracking;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,26 +9,24 @@ import java.util.List;
 public class Problem131_PalindromePartitioning {
     public static void main(String[] args) {
         Problem131_PalindromePartitioning sol = new Problem131_PalindromePartitioning();
-        System.out.println(sol.partition("aabaa"));
+        System.out.println(sol.partition("aba"));
     }
     public List<List<String>> partition(String s) {
         List<List<String>> res = new ArrayList<>();
         List<String> cur = new ArrayList<>();
-        generate(s, s.length(), cur, res);
+        generate(s, 0, cur, res);
         return res;
     }
 
     void generate(String s, int st, List<String> cur, List<List<String>> res) {
-        if (st >= s.length()) {
-            res.add(new ArrayList<>(cur));
-            return;
-        }
-
-        for (int end = st; end < s.length(); end++) {
-            if (isPalindrome(s, st, end)) {
-                cur.add(s.substring(st, end + 1));
-                generate(s, end + 1, cur, res);
-                cur.remove(cur.size() - 1);
+        if (st >= s.length()) res.add(new ArrayList<>(cur));
+        else {
+            for (int i = st; i < s.length(); i++) {
+                if (isPalindrome(s, st, i)) {
+                    cur.add(s.substring(st, i + 1));
+                    generate(s, i + 1, cur, res);
+                    cur.remove(cur.size() - 1);
+                }
             }
         }
     }

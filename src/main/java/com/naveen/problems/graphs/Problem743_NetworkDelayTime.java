@@ -1,4 +1,4 @@
-package com.naveen.problems;
+package com.naveen.problems.graphs;
 
 import java.util.*;
 
@@ -10,7 +10,7 @@ import java.util.*;
 //
 //We will send a signal from a given node k. Return the minimum time it takes for all the n nodes to receive the signal.
 // If it is impossible for all the n nodes to receive the signal, return -1.
-public class problem743 {
+public class Problem743_NetworkDelayTime {
     public static void main(String[] args) {
         int[][] times = {{2,1,1},{2,3,1},{3,4,1}};
         System.out.println(networkDelayTime(times, 4, 2));
