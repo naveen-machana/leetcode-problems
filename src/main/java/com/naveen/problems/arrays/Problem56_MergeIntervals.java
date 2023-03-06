@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays.problem56;
+package com.naveen.problems.arrays;
 
 import java.util.*;
 
@@ -6,10 +6,10 @@ import java.util.*;
 // 56. Merge Intervals
 // Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals,
 // and return an array of the non-overlapping intervals that cover all the intervals in the input.
-public class Solution {
+public class Problem56_MergeIntervals {
     public static void main(String[] args) {
         int[][] a = {{1,3},{2,6},{8,10},{15,18}};
-        Solution s = new Solution();
+        Problem56_MergeIntervals s = new Problem56_MergeIntervals();
         s.merge(a);
     }
     public int[][] merge(int[][] a) {

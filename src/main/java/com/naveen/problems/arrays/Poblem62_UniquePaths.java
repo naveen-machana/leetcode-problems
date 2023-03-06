@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays.problem62;
+package com.naveen.problems.arrays;
 
 // https://leetcode.com/problems/unique-paths/
 // 62. Unique Paths
@@ -9,7 +9,7 @@ package com.naveen.problems.arrays.problem62;
 // Given the two integers m and n, return the number of possible unique paths that the robot can take
 // to reach the bottom-right corner.
 
-public class Solution {
+public class Poblem62_UniquePaths {
     static int[][] moves = {{1, 0}, {0, 1}};
     public int uniquePaths(int m, int n) {
         int[][] dp = new int[m][n];
