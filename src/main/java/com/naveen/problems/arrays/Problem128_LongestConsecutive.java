@@ -1,9 +1,9 @@
-package com.naveen.problems.arrays.problem128;
+package com.naveen.problems.arrays;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Solution {
+public class Problem128_LongestConsecutive {
     public int longestConsecutive(int[] nums) {
         Set<Integer> set = new HashSet<>();
         int maxCount = 0;
