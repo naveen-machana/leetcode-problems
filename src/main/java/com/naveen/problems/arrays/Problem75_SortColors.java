@@ -8,20 +8,23 @@ package com.naveen.problems.arrays;
 // We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
 //
 // You must solve this problem without using the library's sort function.
+// 0, 2, 1, 0, 1
+// 0, 1, 1, 0, 2
+// 0, 0, 1, 1, 2
 public class Problem75_SortColors {
     public void sortColors(int[] a) {
         int i = 0, j = 0, k = a.length - 1;
-        while (j <= k) {
-            switch(a[j]) {
-                case 0:
+        while (j < k) {
+            switch (a[j]) {
+                case 0 :
                     swap(a, i, j);
                     i++;
                     j++;
                     break;
-                case 1:
+                case 1 :
                     j++;
                     break;
-                case 2:
+                case 2 :
                     swap(a, j, k);
                     k--;
                     break;
