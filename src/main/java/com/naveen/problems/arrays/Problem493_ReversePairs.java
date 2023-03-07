@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays.problem493;
+package com.naveen.problems.arrays;
 
 // https://leetcode.com/problems/reverse-pairs/
 // 493. Reverse Pairs
@@ -13,9 +13,9 @@ package com.naveen.problems.arrays.problem493;
 // Explanation: The reverse pairs are:
 // (1, 4) --> nums[1] = 3, nums[4] = 1, 3 > 2 * 1
 // (3, 4) --> nums[3] = 3, nums[4] = 1, 3 > 2 * 1
-public class Solution {
+public class Problem493_ReversePairs {
     public static void main(String[] args) {
-        Solution s = new Solution();
+        Problem493_ReversePairs s = new Problem493_ReversePairs();
         int[] a = {1,3,2,3,1};
         s.reversePairs(a);
     }
