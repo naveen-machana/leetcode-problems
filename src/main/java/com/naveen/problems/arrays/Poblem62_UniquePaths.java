@@ -18,16 +18,14 @@ public class Poblem62_UniquePaths {
 
     private int count(int i, int j, int m, int n, int[][] dp) {
         if (i == m - 1 || j == n - 1) return 1;
-
-        if (dp[i][j] != 0) return dp[i][j];
-
+        if (dp[i][j] != 0 ) return dp[i][j];
         int res = 0;
-        for (int[] move : moves) {
-            int x = i + move[0], y = j + move[1];
-            if (isValid(x, y, m, n)) {
-                res += count(x, y, m, n, dp);
+        for (int[] move: moves) {
+            if (isValid(i + move[0], j + move[1], m, n)) {
+                res += count(i + move[0], j + move[1], m, n, dp);
             }
         }
+
         dp[i][j] = res;
         return dp[i][j];
     }
