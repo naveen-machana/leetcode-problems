@@ -14,7 +14,7 @@ package com.naveen.problems.arrays;
 public class Problem75_SortColors {
     public void sortColors(int[] a) {
         int i = 0, j = 0, k = a.length - 1;
-        while (j < k) {
+        while (j <= k) {
             switch (a[j]) {
                 case 0 :
                     swap(a, i, j);
