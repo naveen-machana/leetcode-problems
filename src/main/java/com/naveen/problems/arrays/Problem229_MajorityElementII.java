@@ -1,12 +1,12 @@
-package com.naveen.problems.arrays.problem229;
+package com.naveen.problems.arrays;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // https://leetcode.com/problems/majority-element-ii/
-public class Solution {
+public class Problem229_MajorityElementII {
     public static void main(String[] args) {
-        Solution s = new Solution();
+        Problem229_MajorityElementII s = new Problem229_MajorityElementII();
         int[] a = {2,1,1,3,1,4,5,6};
         s.majorityElement(a);
     }
