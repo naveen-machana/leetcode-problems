@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays.problem75;
+package com.naveen.problems.arrays;
 
 // https://leetcode.com/problems/sort-colors/
 // 75. Sort Colors
@@ -8,7 +8,7 @@ package com.naveen.problems.arrays.problem75;
 // We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
 //
 // You must solve this problem without using the library's sort function.
-public class Solution {
+public class Problem75_SortColors {
     public void sortColors(int[] a) {
         int i = 0, j = 0, k = a.length - 1;
         while (j <= k) {
