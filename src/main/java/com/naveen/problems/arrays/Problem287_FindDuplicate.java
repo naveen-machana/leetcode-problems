@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays.problem287;
+package com.naveen.problems.arrays;
 
 // https://leetcode.com/problems/find-the-duplicate-number/
 // 287. Find the Duplicate Number
