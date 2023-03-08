@@ -52,11 +52,12 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 * */
 public class Problem27_RemoveElement {
     public int removeElement(int[] a, int val) {
-
         int st = -1, tail = 0, n = a.length;
         while (tail < n) {
-            if (a[tail] != val)
-                swap(a, ++st, tail);
+            if (a[tail] != val) {
+                st++;
+                swap(a, st, tail);
+            }
             tail++;
         }
         return st + 1;

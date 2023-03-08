@@ -20,18 +20,15 @@ package com.naveen.problems.arrays;
 //The replacement must be in place and use only constant extra memory.
 public class Problem31_NextPermutation {
     public void nextPermutation(int[] a) {
-        if (a.length <= 1) return;
-        int n = a.length, k = 0, l;
-        for (l = n - 2; l >= 0; l--) {
-            if (a[l] < a[l + 1]) break;
-        }
-        if (l < 0) reverse(a, 0, n);
+        if (a.length == 1) return;
+        int st = a.length - 2;
+        while (st >= 0 && a[st] >= a[st + 1]) st--;
+        if (st < 0) reverse(a, 0, a.length);
         else {
-            for (k = n - 1; k > l; k--) {
-                if (a[k] > a[l]) break;
-            }
-            swap(a, l, k);
-            reverse(a, l + 1, n);
+            int tail = a.length - 1;
+            while (st < tail && a[st] >= a[tail]) tail--;
+            swap(a, st, tail);
+            reverse(a, st + 1, a.length);
         }
     }
 
