@@ -15,16 +15,16 @@ public class Problem90_Subsets2 {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<>();
-        subsets(nums, 0, res, new ArrayList<>());
+        subsets(nums, res, new ArrayList<>(), 0);
         return res;
     }
 
-    private void subsets(int[] a, int st, List<List<Integer>> res, List<Integer> cur) {
+    private void subsets(int[] a, List<List<Integer>> res, List<Integer> cur, int st) {
         res.add(new ArrayList<>(cur));
         for (int i = st; i < a.length; i++) {
             if (i > st && a[i] == a[i - 1]) continue;
             cur.add(a[i]);
-            subsets(a, i + 1, res, cur);
+            subsets(a, res, cur, i + 1);
             cur.remove(cur.size() - 1);
         }
     }
