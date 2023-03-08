@@ -21,12 +21,11 @@ public class Problem33_SearchInASortedAndRotatedArray {
         int n = a.length;
         int st = 0, end = n - 1;
         while (st < end) {
-            int m = (st + end)/2;
-            if (a[m] < a[end]) end = m;
-            else st = m + 1;
+            int m = (st + end) / 2;
+            if (a[m] > a[n - 1]) st = m + 1;
+            else end = m;
         }
-        int p = st;
-        st = 0; end = n - 1;
+        int p = st; st = 0; end = n - 1;
         while (st <= end) {
             int m = (st + end)/2;
             int rm = (m + p) % n;
