@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 /*
+https://leetcode.com/problems/summary-ranges/
 * You are given a sorted unique integer array nums.
 A range [a,b] is the set of all integers from a to b (inclusive).
 Return the smallest sorted list of ranges that cover all the numbers in the array exactly.
