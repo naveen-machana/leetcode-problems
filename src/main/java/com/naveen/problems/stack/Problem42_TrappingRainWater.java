@@ -1,4 +1,4 @@
-package com.naveen.problems.arrays;
+package com.naveen.problems.stack;
 
 import java.util.ArrayDeque;
 

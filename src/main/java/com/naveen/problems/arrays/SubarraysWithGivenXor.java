@@ -3,6 +3,9 @@ package com.naveen.problems.arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+// https://takeuforward.org/data-structure/count-the-number-of-subarrays-with-given-xor-k/
+// Given an array of integers A and an integer B. Find the total number of subarrays having bitwise XOR of all
+// elements equal to B.
 // runxor = y ^ k
 // runxor ^ k = y
 // prefixsum = previous_prefixsum + a[i]
