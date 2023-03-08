@@ -28,15 +28,18 @@ public class Problem448_FindAllNumbersDisappearedInArray {
     }
     public List<Integer> findDisappearedNumbers(int[] a) {
         for (int i = 0; i < a.length; i++) {
-            while (i != a[i] - 1 && a[i] != a[a[i] - 1]) {
+            while (a[i] - 1 < a.length && a[i] != a[a[i] - 1]) {
                 swap(a, i, a[i] - 1);
             }
         }
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < a.length; i++)
-            if (i != a[i] - 1) list.add(i + 1);
-        return list;
+
+        List<Integer> res = new ArrayList<>();
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] - 1 != i) res.add(i + 1);
+        }
+        return res;
     }
+
     private void swap(int[] a, int i, int j) {
         int t = a[i];
         a[i] = a[j];
