@@ -12,18 +12,16 @@ import java.util.Map;
 //
 public class SubarraysWithGivenXor {
     public int solve(int[] a, int b) {
-        int xor = 0, count = 0;
         Map<Integer, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < a.length; i++) {
-            xor = xor ^ a[i];
-            if (map.containsKey(xor ^ b)) {
-                count += map.get(xor ^ b);
-            }
-            if (xor == b) count++;
-            map.merge(xor, 1, (ov, nv) -> ov + nv);
+        int xor = 0, res = 0, n = a.length;
+        map.put(0, 1);
+        for (int i = 0; i < n; i++) {
+            xor ^= a[i];
+            if (map.containsKey(xor ^ b)) res += map.get(xor ^ b);
+            int count = map.getOrDefault(xor, 0);
+            map.put(xor, count + 1);
         }
-
-        return count;
+        return res;
     }
 }
