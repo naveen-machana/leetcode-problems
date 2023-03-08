@@ -10,22 +10,23 @@ import java.util.*;
 // Notice that the solution set must not contain duplicate triplets.
 public class Problem15_3Sum {
     public List<List<Integer>> threeSum(int[] a) {
-        Set<List<Integer>> res = new HashSet<>();
+        List<List<Integer>> res = new ArrayList<>();
         int n = a.length;
-        if (n < 3) return new ArrayList<>(res);
         Arrays.sort(a);
-        int i = 0, j, k;
-        for (; i < n - 2; i++) {
-            j = i + 1; k = n - 1;
-            while (j < k) {
-                int sum = a[i] + a[j] + a[k];
-                if (sum == 0) {
-                    res.add(Arrays.asList(a[i], a[j++], a[k--]));
+        for (int i = 0; i < n - 2; i++) {
+            if (i > 0 && a[i] == a[i - 1]) continue;
+            int l = i + 1, r = n - 1;
+            while (l < r) {
+                int sum = a[l] + a[r] + a[i];
+                if (sum < 0) l++;
+                else if (sum > 0) r--;
+                else {
+                    res.add(List.of(a[i], a[l], a[r]));
+                    while (l < r && a[l] == res.get(res.size() - 1).get(1)) l++;
+                    while (l < r && a[r] == res.get(res.size() - 1).get(2)) r--;
                 }
-                else if (sum > 0) k--;
-                else j++;
             }
         }
-        return new ArrayList<>(res);
+        return res;
     }
 }

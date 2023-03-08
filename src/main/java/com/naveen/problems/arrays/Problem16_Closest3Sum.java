@@ -11,23 +11,25 @@ Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 * */
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Problem16_Closest3Sum {
+    public static void main(String[] args) {
+        Problem16_Closest3Sum sol = new Problem16_Closest3Sum();
+        int[] a = {4,0,5,-5,3,3,0,-4,-5};
+        sol.threeSumClosest(a, -2);
+    }
     public int threeSumClosest(int[] a, int target) {
-        if (a.length  < 3) return 0;
-        int closest = a[0] + a[1] + a[2];
         Arrays.sort(a);
+        int closest = a[0] + a[1] + a[2];
         for (int i = 0; i < a.length - 2; i++) {
-            if (i != 0 && a[i - 1] == a[i]) continue;
+            if (i > 0 && a[i] == a[i - 1]) continue;
             int j = i + 1, k = a.length - 1;
             while (j < k) {
-                int cur = a[i] + a[j] + a[k];
-                if (cur == target) return cur;
-                if (Math.abs(target - cur) < Math.abs(target - closest)) closest = cur;
-                if (cur > target) k--;
-                else j++;
+                int sum = a[i] + a[j] + a[k];
+                if (sum == target) return sum;
+                if (Math.abs(target - sum) < Math.abs(target - closest)) closest = sum;
+                if (sum < target) j++;
+                else k--;
             }
         }
         return closest;
