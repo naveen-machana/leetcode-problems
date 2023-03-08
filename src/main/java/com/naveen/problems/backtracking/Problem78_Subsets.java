@@ -12,16 +12,16 @@ Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
 * */
 public class Problem78_Subsets {
     public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> res = new ArrayList<>();
-        subsets(nums, 0, res, new ArrayList<>());
-        return res;
+       List<List<Integer>> res = new ArrayList<>();
+       subsets(nums, res, new ArrayList<>(), 0);
+       return res;
     }
 
-    private void subsets(int[] a, int st, List<List<Integer>> res, List<Integer> cur) {
+    private void subsets(int[] a, List<List<Integer>> res, List<Integer> cur, int st) {
         res.add(new ArrayList<>(cur));
         for (int i = st; i < a.length; i++) {
             cur.add(a[i]);
-            subsets(a, i + 1, res, cur);
+            subsets(a, res, cur, i + 1);
             cur.remove(cur.size() - 1);
         }
     }
