@@ -1,4 +1,4 @@
-package com.naveen.problems.linkedlist.problem141;
+package com.naveen.problems.linkedlist;
 
 import com.naveen.problems.linkedlist.ListNode;
 
@@ -10,7 +10,7 @@ import com.naveen.problems.linkedlist.ListNode;
 // is connected to. Note that pos is not passed as a parameter.
 //
 // Return true if there is a cycle in the linked list. Otherwise, return false.
-public class Solution {
+public class Problem141_LinkedListCycle {
     public boolean hasCycle(ListNode head) {
         ListNode f = head, s = head;
         while (f != null && f.next != null) {

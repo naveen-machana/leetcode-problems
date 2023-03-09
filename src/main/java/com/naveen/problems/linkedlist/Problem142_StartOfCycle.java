@@ -1,4 +1,4 @@
-package com.naveen.problems.linkedlist.problem142;
+package com.naveen.problems.linkedlist;
 
 import com.naveen.problems.linkedlist.ListNode;
 
@@ -11,7 +11,7 @@ import com.naveen.problems.linkedlist.ListNode;
 // connected to (0-indexed). It is -1 if there is no cycle. Note that pos is not passed as a parameter.
 //
 // Do not modify the linked list.
-public class Solution {
+public class Problem142_StartOfCycle {
     public ListNode detectCycle(ListNode head) {
         ListNode f = head, s = head;
         while (f != null && f.next != null) {
