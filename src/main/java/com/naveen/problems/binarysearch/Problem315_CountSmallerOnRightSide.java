@@ -1,8 +1,10 @@
 package com.naveen.problems.binarysearch;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /*
 https://leetcode.com/problems/count-of-smaller-numbers-after-self/description/
@@ -24,55 +26,49 @@ public class Problem315_CountSmallerOnRightSide {
         System.out.println(sol.countSmaller(new int[]{5,2,6,1}));
     }
     private static class Element {
-        int val, index;
+        int val, index, count;
         public Element(int val, int index) { this.val = val; this.index = index; }
     }
 
     public List<Integer> countSmaller(int[] nums) {
-        if (nums == null || nums.length == 0) return new ArrayList<>();
-
+        List<Integer> res = new ArrayList<>();
+        if (nums == null || nums.length == 0) return res;
         Element[] a = new Element[nums.length];
         for (int i = 0; i < nums.length; i++) a[i] = new Element(nums[i], i);
-        int[] res = new int[nums.length];
-
-        mergeAndCount(a, 0, nums.length - 1, res);
-        List<Integer> resList = new ArrayList<>(nums.length);
-        for (int ele : res) resList.add(ele);
-        return resList;
+        mergedAndCount(a, 0, nums.length - 1);
+        Integer[] resArr = new Integer[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            resArr[a[i].index] = a[i].count;
+        }
+        return Arrays.asList(resArr);
     }
 
-    private void mergeAndCount(Element[] a, int st, int end, int[] res) {
+    private void mergedAndCount(Element[] a, int st, int end) {
         if (st >= end) return;
-        int m = (st + end)/2;
-        mergeAndCount(a, st, m, res);
-        mergeAndCount(a, m + 1, end, res);
-        merge(a, st, m, end, res);
+        int mid = (st + end)/2;
+        mergedAndCount(a, st, mid);
+        mergedAndCount(a, mid + 1, end);
+        merge(a, st, mid, end);
     }
 
-    private void merge(Element[] a, int st, int m, int end, int[] res) {
-        int i = st, j = m + 1;
+    private void merge(Element[] a, int st, int mid, int end) {
+        int k1 = st, k2 = mid + 1, count = 0;
+        for (; k1 <= mid; k1++) {
+            while (k2 <= end && a[k2].val < a[k1].val) {
+                count++; k2++;
+            }
+            a[k1].count += count;
+        }
+        k1 = st; k2 = mid + 1;
         LinkedList<Element> merged = new LinkedList<>();
-        int numEleInRightLessThanLeft = 0;
-        while (i <= m && j <= end) {
-            if (a[i].val > a[j].val) {
-                numEleInRightLessThanLeft++;
-                merged.add(a[j++]);
-            }
-            else {
-                res[a[i].index] = res[a[i].index] + numEleInRightLessThanLeft;
-                merged.add(a[i++]);
-            }
+        while (k1 <= mid && k2 <= end) {
+            if (a[k1].val <= a[k2].val) merged.add(a[k1++]);
+            else merged.add(a[k2++]);
         }
-        while (i <= m) {
-            res[a[i].index] = res[a[i].index] + numEleInRightLessThanLeft;
-            merged.add(a[i++]);
-        }
-        while (j <= end) {
-            merged.add(a[j++]);
-        }
-        i = st;
-        while (i <= end) {
-            a[i++] = merged.removeFirst();
+        while (k1 <= mid) merged.add(a[k1++]);
+        while (k2 <= end) merged.add(a[k2++]);
+        for (int i = st; i <= end; i++) {
+            a[i] = merged.removeFirst();
         }
     }
 }
