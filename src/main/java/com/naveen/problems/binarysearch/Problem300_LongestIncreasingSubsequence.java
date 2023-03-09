@@ -13,28 +13,24 @@ public class Problem300_LongestIncreasingSubsequence {
         sol.lengthOfLIS(new int[]{10,9,2,5,3,7,101,18});
     }
     public int lengthOfLIS(int[] a) {
-        int n = a.length;
-        int[] dp = new int[n];
-        dp[0] = a[0];
-        int len = 1;
+        int n = a.length, lp = 0;
+        int[] lis = new int[n]; lis[0] = a[0];
+
         for (int i = 1; i < n; i++) {
-            if (dp[len - 1] < a[i]) {
-                dp[len++] = a[i];
-            }
+            if (a[i] > lis[lp]) lis[lp++] = a[i];
             else {
-                int p = position(dp, a[i], len);
-                dp[p] = a[i];
+                int pos = position(lis, a[i], lp);
+                lis[pos] = a[i];
             }
         }
-        return len;
+        return lp;
     }
-
-    private int position(int[] a, int x, int n) {
-        int l = 0, r = n;
+    private int position(int[] a, int target, int end) {
+        int l = 0, r = end;
         while (l < r) {
             int m = (l + r)/2;
-            if (a[m] < x) l = m + 1;
-            else r = m;
+            if (a[m] >= target) r = m;
+            else l = m + 1;
         }
         return l;
     }
