@@ -1,9 +1,9 @@
-package com.naveen.problems.linkedlist.problem61;
+package com.naveen.problems.linkedlist;
 
 import com.naveen.problems.linkedlist.ListNode;
 
 // https://leetcode.com/problems/rotate-list/description/
-public class Solution {
+public class Problem61_RotateList {
     public ListNode rotateRight(ListNode head, int k) {
         if (head == null || head.next == null) return head;
         int count = 1;

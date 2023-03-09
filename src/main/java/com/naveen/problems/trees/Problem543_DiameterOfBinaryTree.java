@@ -9,6 +9,18 @@ The length of a path between two nodes is represented by the number of edges bet
 * */
 public class Problem543_DiameterOfBinaryTree {
     public int diameterOfBinaryTree(TreeNode root) {
-
+        Result result = new Result();
+        diameter(root, result);
+        return result.max;
+    }
+    private int diameter(TreeNode root, Result result) {
+        if (root == null) return 0;
+        int left = diameter(root.left, result);
+        int right = diameter(root.right, result);
+        result.max = Math.max(result.max, left + right);
+        return 1 + Math.max(left, right);
+    }
+    private static class Result {
+        int max = 0;
     }
 }

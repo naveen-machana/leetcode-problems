@@ -1,9 +1,9 @@
-package com.naveen.problems.linkedlist.problem25;
+package com.naveen.problems.linkedlist;
 
 import com.naveen.problems.linkedlist.ListNode;
 
 // https://leetcode.com/problems/reverse-nodes-in-k-group/
-public class Solution {
+public class Problem25_ReverseInKGroup {
     public ListNode reverseKGroup(ListNode head, int k) {
         int count = 0;
         ListNode reversed = head;

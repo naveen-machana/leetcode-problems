@@ -1,4 +1,4 @@
-package com.naveen.problems.linkedlist.problem21;
+package com.naveen.problems.linkedlist;
 
 // https://leetcode.com/problems/merge-two-sorted-lists/
 // 21. Merge Two Sorted Lists
@@ -8,7 +8,7 @@ package com.naveen.problems.linkedlist.problem21;
 // the nodes of the first two lists.
 //
 // Return the head of the merged linked list.
-public class Solution {
+public class Problem21_MergeTwoSortedLists {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode temp = new ListNode();
         ListNode start = temp;
@@ -32,13 +32,5 @@ public class Solution {
         if (a != null) temp.next = a;
         if (b != null) temp.next = b;
         return start.next;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 }

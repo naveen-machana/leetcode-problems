@@ -1,4 +1,4 @@
-package com.naveen.problems.linkedlist.problem2;
+package com.naveen.problems.linkedlist;
 
 // https://leetcode.com/problems/add-two-numbers/
 // 2. Add Two Numbers
@@ -7,7 +7,7 @@ package com.naveen.problems.linkedlist.problem2;
 // Add the two numbers and return the sum as a linked list.
 //
 //You may assume the two numbers do not contain any leading zero, except the number 0 itself.
-public class Solution {
+public class Problem2_AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int sum = 0;
         ListNode temp = new ListNode();
@@ -23,13 +23,5 @@ public class Solution {
         }
 
         return start.next;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 }

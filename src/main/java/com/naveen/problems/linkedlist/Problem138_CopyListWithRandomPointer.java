@@ -1,11 +1,8 @@
-package com.naveen.problems.linkedlist.problem138;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.naveen.problems.linkedlist;
 
 // https://leetcode.com/problems/copy-list-with-random-pointer/
 //
-public class Solution {
+public class Problem138_CopyListWithRandomPointer {
     public Node copyRandomList(Node head) {
         Node temp = head;
         while (temp != null) {
