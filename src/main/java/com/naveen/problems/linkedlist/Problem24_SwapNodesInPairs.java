@@ -10,25 +10,16 @@ package com.naveen.problems.linkedlist;
 * */
 public class Problem24_SwapNodesInPairs {
     public ListNode swapPairs(ListNode head) {
-        int k = 2;
+        if (head == null || head.next == null) return head;
         ListNode dummy = new ListNode();
-        ListNode temp = dummy;
-        dummy.next = head;
-
-        while (temp != null) {
-            for ()
+        ListNode cur = head, prev = dummy;
+        while (cur != null && cur.next != null) {
+            prev.next = cur.next;
+            cur.next = prev.next.next;
+            prev.next.next = cur;
+            prev = cur;
+            cur = cur.next;
         }
-    }
-
-    private ListNode reverse(ListNode node) {
-        ListNode temp = node;
-        ListNode head = null;
-        while (temp != null) {
-            ListNode next = temp.next;
-            temp.next = head;
-            head = temp;
-            temp = next;
-        }
-        return head;
+        return dummy.next;
     }
 }
