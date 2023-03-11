@@ -9,28 +9,24 @@ package com.naveen.problems.linkedlist;
 //
 // Return the head of the merged linked list.
 public class Problem21_MergeTwoSortedLists {
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode temp = new ListNode();
-        ListNode start = temp;
-        ListNode a = list1, b = list2;
+    public ListNode mergeTwoLists(ListNode a, ListNode b) {
+        ListNode start = new ListNode();
+        ListNode tail = start;
 
         while (a != null && b != null) {
             if (a.val <= b.val) {
-                ListNode anext = a.next;
-                temp.next = a;
-                temp = a;
-                a = anext;
+                tail.next = a;
+                a = a.next;
             }
             else {
-                ListNode bnext = b.next;
-                temp.next = b;
-                temp = b;
-                b = bnext;
+                tail.next = b;
+                b = b.next;
             }
+            tail = tail.next;
         }
 
-        if (a != null) temp.next = a;
-        if (b != null) temp.next = b;
+        if (a != null) tail.next = a;
+        if (b != null) tail.next = b;
         return start.next;
     }
 }
