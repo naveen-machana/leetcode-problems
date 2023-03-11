@@ -22,19 +22,18 @@ merging them into one sorted list:
 * */
 public class Problem23_MergeKSortedLinkedLists {
     public ListNode mergeKLists(ListNode[] lists) {
-        ListNode dummy = new ListNode();
-        ListNode tail = dummy;
-        PriorityQueue<ListNode> pq = new PriorityQueue<>((o, t) -> o.val - t.val);
-        for (ListNode f : lists)
-            if (f != null)
-                pq.offer(f);
+        ListNode start = new ListNode();
+        ListNode tail = start;
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a, b) -> a.val - b.val);
+        for (int i = 0; i < lists.length; i++)
+            if (lists[i] != null)
+                pq.offer(lists[i]);
         while (!pq.isEmpty()) {
             ListNode temp = pq.poll();
-            ListNode next = temp.next;
             tail.next = temp;
-            tail = temp;
-            if (next != null) pq.offer(next);
+            tail = tail.next;
+            if (temp.next != null) pq.offer(temp.next);
         }
-        return dummy.next;
+        return  start.next;
     }
 }
