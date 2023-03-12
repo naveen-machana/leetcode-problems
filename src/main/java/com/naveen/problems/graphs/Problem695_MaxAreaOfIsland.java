@@ -1,4 +1,4 @@
-package com.naveen.problems.graphs.problem695;
+package com.naveen.problems.graphs;
 
 // https://leetcode.com/problems/max-area-of-island/
 // 695. Max Area of Island
@@ -8,7 +8,7 @@ package com.naveen.problems.graphs.problem695;
 // The area of an island is the number of cells with a value 1 in the island.
 //
 // Return the maximum area of an island in grid. If there is no island, return 0.
-public class Solution {
+public class Problem695_MaxAreaOfIsland {
     int[][] MOVES = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
     public int maxAreaOfIsland(char[][] board) {
         int m = board.length, n = board[0].length;
