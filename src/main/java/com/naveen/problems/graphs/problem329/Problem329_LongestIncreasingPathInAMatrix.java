@@ -9,9 +9,9 @@ import java.util.List;
 //From each cell, you can either move in four directions: left, right, up, or down.
 // You may not move diagonally or move outside the boundary (i.e., wrap-around is not allowed).
 // backtracking solution
-public class Solution {
+public class Problem329_LongestIncreasingPathInAMatrix {
     public static void main(String[] args) {
-        Solution s = new Solution();
+        Problem329_LongestIncreasingPathInAMatrix s = new Problem329_LongestIncreasingPathInAMatrix();
         int[][] m = {{3,4,5},{3,2,6},{2,2,1}};
         System.out.println(s.longestIncreasingPath(m));
     }

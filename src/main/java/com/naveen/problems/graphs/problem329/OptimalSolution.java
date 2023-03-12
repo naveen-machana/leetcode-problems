@@ -43,7 +43,8 @@ public class OptimalSolution {
             max = Math.max(max, cur.steps);
             List<Pair> adj = map.getOrDefault(cur, Collections.EMPTY_LIST);
             for (Pair a : adj) {
-                indegree.merge(a, 1, (ov, nv) -> ov - nv);
+                int in = indegree.get(a);
+                indegree.put(a, in - 1);
                 if (indegree.get(a) == 0) {
                     a.steps = cur.steps + 1;
                     q.offer(a);
