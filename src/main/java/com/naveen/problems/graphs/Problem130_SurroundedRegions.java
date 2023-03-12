@@ -1,4 +1,4 @@
-package com.naveen.problems.graphs.problem130;
+package com.naveen.problems.graphs;
 
 import java.util.Arrays;
 
@@ -7,10 +7,10 @@ import java.util.Arrays;
 // Given an m x n matrix board containing 'X' and 'O', capture all regions that are 4-directionally surrounded by 'X'.
 //
 // A region is captured by flipping all 'O's into 'X's in that surrounded region.
-public class Solution {
+public class Problem130_SurroundedRegions {
     public static void main(String[] args) {
         char[][] board = {{'X','O','X'},{'X','O','X'},{'X','O','X'}};
-        Solution s = new Solution();
+        Problem130_SurroundedRegions s = new Problem130_SurroundedRegions();
         s.solve(board);
 
         System.out.println(Arrays.toString(board));
