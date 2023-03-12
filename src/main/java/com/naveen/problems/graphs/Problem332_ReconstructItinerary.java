@@ -1,4 +1,4 @@
-package com.naveen.problems.graphs.problem332;
+package com.naveen.problems.graphs;
 
 import java.util.*;
 
@@ -16,7 +16,7 @@ import java.util.*;
 // Eulerian Path: If Euler Path exists, then you should be able to visit all edges exactly once
 // Eulerian Circuit: If Euler Circuit exists, then you should be able to visit all edges exactly once and returned back
 // source vertex.
-class Solution {
+class Problem332_ReconstructItinerary {
     public List<String> findItinerary(List<List<String>> tickets) {
         Map<String, PriorityQueue<String>> g = new HashMap<>();
         for (List<String> e : tickets)
