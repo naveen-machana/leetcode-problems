@@ -1,4 +1,4 @@
-package com.naveen.problems.graphs.problem200;
+package com.naveen.problems.graphs;
 
 // https://leetcode.com/problems/number-of-islands/
 // 200. Number of Islands
@@ -7,7 +7,7 @@ package com.naveen.problems.graphs.problem200;
 //
 // An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
 // You may assume all four edges of the grid are all surrounded by water.
-class Solution {
+class Problem200_NumberOfIslands {
     int[][] MOVES = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
     public int numIslands(int[][] board) {
         int m = board.length, n = board[0].length;
