@@ -1,9 +1,9 @@
-package com.naveen.problems.linkedlist.problem206;
+package com.naveen.problems.linkedlist;
 
 // https://leetcode.com/problems/reverse-linked-list/description/
 // 206. Reverse Linked List
 // Given the head of a singly linked list, reverse the list, and return the reversed list.
-class Solution {
+class Problem206_ReverseList {
     public ListNode reverseList(ListNode head) {
         ListNode temp = head;
         ListNode res = null;

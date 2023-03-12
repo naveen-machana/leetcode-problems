@@ -1,4 +1,4 @@
-package com.naveen.problems.linkedlist.problem160;
+package com.naveen.problems.linkedlist;
 
 // https://leetcode.com/problems/intersection-of-two-linked-lists/
 // 160. Intersection of Two Linked Lists
@@ -6,7 +6,7 @@ package com.naveen.problems.linkedlist.problem160;
 // If the two linked lists have no intersection at all, return null.
 //
 // For example, the following two linked lists begin to intersect at node c1:
-public class Solution {
+public class Problem160_IntersectionNode {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) return null;
 

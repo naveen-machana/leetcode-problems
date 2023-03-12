@@ -1,7 +1,4 @@
-package com.naveen.problems.linkedlist.problem234;
-
-import java.util.ArrayDeque;
-import java.util.Stack;
+package com.naveen.problems.linkedlist;
 
 /**
  * Definition for singly-linked list.
@@ -13,7 +10,7 @@ import java.util.Stack;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+class Problem234_Palindrome {
     private static class ListNode {
       int val;
       ListNode next;
