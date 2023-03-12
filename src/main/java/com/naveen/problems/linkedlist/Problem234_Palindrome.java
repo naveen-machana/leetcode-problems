@@ -1,23 +1,10 @@
 package com.naveen.problems.linkedlist;
 
 /**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
+ * https://leetcode.com/problems/palindrome-linked-list/
+ * Given the head of a singly linked list, return true if it is a palindromeor false otherwise.
  */
 class Problem234_Palindrome {
-    private static class ListNode {
-      int val;
-      ListNode next;
-      ListNode() {}
-      ListNode(int val) { this.val = val; }
-      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
 
     public boolean isPalindrome(ListNode head) {
         ListNode f = head, s = head;
@@ -37,7 +24,7 @@ class Problem234_Palindrome {
             }
         }
 
-        return false;
+        return true;
     }
 
     ListNode reversed(ListNode head) {
