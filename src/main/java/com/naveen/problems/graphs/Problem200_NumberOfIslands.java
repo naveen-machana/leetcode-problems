@@ -9,31 +9,27 @@ package com.naveen.problems.graphs;
 // You may assume all four edges of the grid are all surrounded by water.
 class Problem200_NumberOfIslands {
     int[][] MOVES = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
-    public int numIslands(int[][] board) {
+    public int numIslands(char[][] board) {
         int m = board.length, n = board[0].length;
         boolean[][] visited = new boolean[m][n];
-
         int count = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (board[i][j] == '1' && !visited[i][j]) {
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+                if (!visited[i][j]
+                && board[i][j] == '1') {
                     count++;
-                    dfs(board, i, j, m, n, visited);
+                    dfs(board, visited, i, j, m, n);
                 }
-            }
-        }
         return count;
     }
 
-    void dfs(int[][] board, int r, int c, int m, int n, boolean[][] visited) {
-        visited[r][c] = true;
+    private void dfs(char[][] board, boolean[][] visited, int i, int j, int m, int n) {
+        visited[i][j] = true;
 
-        for (int[] move : MOVES) {
-            int nextr = move[0] + r, nextc = move[1] + c;
-            if (nextr >= 0 && nextr < m && nextc >= 0 && nextc < n
-                    && !visited[nextr][nextc] && board[nextr][nextc] == '1') {
-                dfs(board, nextr, nextc, m, n, visited);
-            }
+        for (int[] adj : MOVES) {
+            int x = i + adj[0], y = j + adj[1];
+            if (x >= 0 && x < m && y >= 0 && y < n && board[x][y] == '1' && !visited[x][y])
+                dfs(board, visited, x, y, m, n);
         }
     }
 }
