@@ -1,7 +1,6 @@
-package com.naveen.problems.graphs.problem721;
+package com.naveen.problems.graphs;
 
-import java.util.*;
-
+// https://leetcode.com/problems/accounts-merge/
 // 721. Accounts Merge
 // Given a list of accounts where each element accounts[i] is a list of strings,
 // where the first element accounts[i][0] is a name, and the rest of the elements are
@@ -18,5 +17,5 @@ import java.util.*;
 
 // Any problem that involves merging connected components (accounts) is a
 // natural fit for the Disjoint Set Union (DSU) data structure.
-public class Solution {
+public class Problem721_AccountsMerge {
 }
