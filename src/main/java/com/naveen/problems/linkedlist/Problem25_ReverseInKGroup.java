@@ -6,24 +6,21 @@ import com.naveen.problems.linkedlist.ListNode;
 public class Problem25_ReverseInKGroup {
     public ListNode reverseKGroup(ListNode head, int k) {
         int count = 0;
-        ListNode reversed = head;
-        while (reversed != null && count < k) {
-            reversed = reversed.next;
+        ListNode cur = head;
+        while (cur != null && count != k) {
+            cur = cur.next;
             count++;
         }
-
         if (count == k) {
-            reversed = reverseKGroup(reversed, k);
-
+            cur = reverseKGroup(cur, k);
             while (count-- > 0) {
                 ListNode next = head.next;
-                head.next = reversed;
-                reversed = head;
+                head.next = cur;
+                cur = head;
                 head = next;
             }
-            head = reversed;
+            head = cur;
         }
-
         return head;
     }
 }
