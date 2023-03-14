@@ -6,32 +6,27 @@ import java.util.*;
 // topological sorting
 public class Problem207_CourseSchedule {
     public boolean canFinish(int n, int[][] order) {
-        List<List<Integer>> g = new ArrayList<>();
-
+        List<List<Integer>> g = new ArrayList<>(n);
         for (int i = 0; i < n; i++) g.add(new ArrayList<>());
-
-        int[] degree = new int[n];
-
-        for (int[] cur : order) {
-            degree[cur[0]]++;
-            g.get(cur[1]).add(cur[0]);
+        int[] inedges = new int[n];
+        for (int[] e : order) {
+            g.get(e[1]).add(e[0]);
+            inedges[e[0]]++;
         }
 
-        int[] topo = new int[n]; int topoindex = 0;
         Queue<Integer> q = new LinkedList<>();
-        for (int i = 0; i < n; i++)
-            if (degree[i] == 0)
-                q.offer(i);
+        for (int i = 0; i < inedges.length; i++)
+            if (inedges[i] == 0) q.add(i);
 
+        int count = 0;
         while (!q.isEmpty()) {
-            int cur = q.poll();
-            topo[topoindex++] = cur;
-
-            for (int adj : g.get(cur))
-                if (--degree[adj] == 0)
+            count++;
+            int v = q.poll();
+            for (int adj : g.get(v))
+                if (--inedges[adj] == 0)
                     q.offer(adj);
-        }
 
-        return topoindex == n;
+        }
+        return count == n;
     }
 }
