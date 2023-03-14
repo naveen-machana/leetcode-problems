@@ -1,4 +1,4 @@
-package com.naveen.problems.problem210;
+package com.naveen.problems.graphs;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -8,7 +8,7 @@ import java.util.Queue;
 // https://leetcode.com/problems/course-schedule-ii/
 // exactly same code as course-schedule
 // topological sorting
-public class Solution {
+public class Problem210_CourseScheduleII {
 
     public int[] findOrder(int n, int[][] order) {
         List<List<Integer>> g = new ArrayList<>();
