@@ -1,4 +1,4 @@
-package com.naveen.problems.graphs.problem1061;
+package com.naveen.problems.graphs;
 
 // https://leetcode.com/problems/lexicographically-smallest-equivalent-string/
 // 1061. Lexicographically Smallest Equivalent String
@@ -16,24 +16,17 @@ package com.naveen.problems.graphs.problem1061;
 // equivalent strings of baseStr = "eed", and "aab" is the lexicographically smallest equivalent string of baseStr.
 //
 // Return the lexicographically smallest equivalent string of baseStr by using the equivalency information from s1 and s2.
-public class Solution {
+public class Problem1061_LexicographicallySmallestEquivalentString {
     public String smallestEquivalentString(String s1, String s2, String baseStr) {
-        char[] s1Str = s1.toCharArray();
-        char[] s2Str = s2.toCharArray();
+        char[] s1chars = s1.toCharArray();
+        char[] s2chars = s2.toCharArray();
 
         int[] unions = new int[26];
-        for (int i = 0; i < unions.length; i++) unions[i] = i;
-
-        for (int i = 0; i < s1Str.length; i++) {
-            makeUnion(s1Str[i] - 'a', s2Str[i] - 'a', unions);
-        }
-
-        StringBuilder res = new StringBuilder();
-        for (char c : baseStr.toCharArray()) {
-            int cp = find(c - 'a', unions);
-            res.append((char)(cp + 'a'));
-        }
-        return res.toString();
+        for (int i = 0; i < 26; i++) unions[i] = i;
+        for (int i = 0; i < s1chars.length; i++) makeUnion(s1chars[i] - 'a', s2chars[i] - 'a', unions);
+        StringBuilder sb = new StringBuilder();
+        for (char c : baseStr.toCharArray()) sb.append((char)(find(c - 'a', unions) + 'a'));
+        return sb.toString();
     }
 
     void makeUnion(int a, int b, int[] unions) {
@@ -45,7 +38,7 @@ public class Solution {
     }
 
     int find(int a, int[] unions) {
-        if (unions[a] == a) return a;
+        if (a == unions[a]) return a;
         return unions[a] = find(unions[a], unions);
     }
 
