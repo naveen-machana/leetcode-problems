@@ -1,10 +1,10 @@
-package com.naveen.problems.problem207;
+package com.naveen.problems.graphs;
 
 import java.util.*;
 
 // https://leetcode.com/problems/course-schedule/
 // topological sorting
-public class Solution {
+public class Problem207_CourseSchedule {
     public boolean canFinish(int n, int[][] order) {
         List<List<Integer>> g = new ArrayList<>();
 
