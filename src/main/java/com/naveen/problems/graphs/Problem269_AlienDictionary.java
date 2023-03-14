@@ -1,4 +1,4 @@
-package com.naveen.problems.problem269;
+package com.naveen.problems.graphs;
 
 import java.util.*;
 
@@ -7,7 +7,7 @@ import java.util.*;
 // However, the order among letters are unknown to you.
 // You receive a list of words from the dictionary, where words are sorted lexicographically
 // by the rules of this new language. Derive the order of letters in this language.
-public class Solution {
+public class Problem269_AlienDictionary {
     public static void main(String[] args) {
         String[] dict = {"baa","abcd","abca","cab","cad"};
         String res = findOrder(dict, 5, 4);
