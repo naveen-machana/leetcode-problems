@@ -1,6 +1,6 @@
-package com.naveen.problems.problem12;
+package com.naveen.problems.strings;
 
-public class IntegerToRoman {
+public class Problem12_IntegerToRoman {
     public static String[] BELOW_TENS = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
     public static String[] TENS = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
     public static String[] HUNDREDS = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};

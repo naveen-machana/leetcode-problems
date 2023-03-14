@@ -1,9 +1,9 @@
-package com.naveen.problems.problem13;
+package com.naveen.problems.strings;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class RomanToInteger {
+public class Problem13_RomanToInteger {
     static Map<Character, Integer> charToInt = new HashMap<>();
     static {
         charToInt.put('I', 1);
