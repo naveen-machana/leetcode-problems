@@ -16,34 +16,27 @@ import java.util.*;
 public class Problem1129_ShortestPathWithAlternatingColors {
     public int[] shortestAlternatingPaths(int n, int[][] redEdges, int[][] blueEdges) {
         Map<Integer, List<List<Integer>>> g = new HashMap<>();
-        for (int[] re : redEdges)
-            g.computeIfAbsent(re[0], k -> new ArrayList<>()).add(Arrays.asList(re[1], 0));
+        for (int[] e : redEdges) g.computeIfAbsent(e[0], k -> new ArrayList<>()).add(Arrays.asList(e[1], 0));
+        for (int[] e : blueEdges) g.computeIfAbsent(e[0], k -> new ArrayList<>()).add(Arrays.asList(e[1], 1));
 
-        for (int[] be : blueEdges)
-            g.computeIfAbsent(be[0], k -> new ArrayList<>()).add(Arrays.asList(be[1], 1));
-
+        boolean[][] visited = new boolean[n][2];
+        Queue<int[]> q = new LinkedList<>();
+        // 0 - vertex, 0 - steps, 0 - color
+        q.offer(new int[]{0, 0, -1});
         int[] res = new int[n];
         Arrays.fill(res, -1);
-        Queue<int[]> q = new LinkedList<>();
-        // triplet {i - node, j - steps, k - color}
-        q.offer(new int[]{0, 0, -1});
         res[0] = 0;
-        // row - node, column - color
-        boolean[][] visited = new boolean[n][2];
         visited[0][0] = true;
-
         while (!q.isEmpty()) {
-            int[] parent = q.poll();
-            int pv = parent[0], ps = parent[1], pc = parent[2];
-
-            List<List<Integer>> neighbors = g.getOrDefault(pv, Collections.EMPTY_LIST);
-
-            for (List<Integer> adj : neighbors) {
-                int av = adj.get(0), ac = adj.get(1);
-                if (!visited[av][ac] && ac != pc) {
-                    if (res[av] == -1) res[av] = ps + 1;
-                    visited[av][ac] = true;
-                    q.offer(new int[]{av, ps + 1, ac});
+            int[] cur = q.poll();
+            int pv = cur[0], ps = cur[1], pc = cur[2];
+            List<List<Integer>> neighbours = g.getOrDefault(pv, Collections.EMPTY_LIST);
+            for (List<Integer> adj : neighbours) {
+                int nv = adj.get(0), nc = adj.get(1);
+                if (!visited[nv][nc] && nc != pc) {
+                    if (res[nv] == -1) res[nv] = ps + 1;
+                    visited[nv][nc] = true;
+                    q.offer(new int[]{nv, ps + 1, nc});
                 }
             }
         }
