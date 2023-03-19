@@ -1,4 +1,4 @@
-package com.naveen.problems.sorting;
+package com.naveen.problems.problem2169.sorting;
 
 import java.util.Arrays;
 
