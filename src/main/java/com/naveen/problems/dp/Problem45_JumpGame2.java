@@ -22,6 +22,21 @@ public class Problem45_JumpGame2 {
         Problem45_JumpGame2 sol = new Problem45_JumpGame2();
         System.out.println(sol.jump(a));
     }
+    // shortest path can be achieved by doing a BFS. Here we are doing BFS traversal, to find the minimum no. of
+    // steps required to reach to the end of the array. BFS on one dimensional array.
+    public int jump2(int[] nums) {
+        int res = 0, l = 0, r = 0;
+        while (r < nums.length - 1) {
+            int farthest = 0;
+            for (int i = l; i <= r; i++)
+                farthest = Math.max(farthest, i + nums[i]);
+            l = r + 1;
+            r = farthest;
+            res++;
+        }
+        return res;
+    }
+
     public int jump(int[] nums) {
         int jumps = 0, curEnd = 0, curFarthest = 0;
         for (int i = 0; i < nums.length; i++) {

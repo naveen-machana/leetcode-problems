@@ -20,6 +20,38 @@ Explanation: You will always arrive at index 3 no matter what. Its maximum jump 
 *
 * */
 public class Problem55_JumpGame {
+    public boolean canJump4(int[] nums) {
+        int goal = nums.length - 1;
+        for (int i = nums.length - 2; i >= 0; i--)
+            if (i + nums[i] >= goal)
+                goal = i;
+        return goal == 0;
+    }
+
+    public boolean canJump3(int[] nums) {
+        Boolean[] dp = new Boolean[nums.length];
+        return jump3(nums, 0, nums.length, dp);
+    }
+
+    private boolean jump3(int[] a, int i, int n, Boolean[] dp) {
+        if (i >= n - 1) return true;
+        if (dp[i] != null) return dp[i];
+        boolean res = false;
+
+        for (int j = 1; j <= a[i]; j++) {
+            if (j + a[j] >= n - 1) {
+                res = true;
+                break;
+            }
+            else if (jump3(a, j + i, n, dp)) {
+                res = true;
+                break;
+            }
+        }
+        dp[i] = res;
+        return dp[i];
+    }
+
     public boolean canJump2(int[] nums) {
         return jump(nums, nums.length);
     }
