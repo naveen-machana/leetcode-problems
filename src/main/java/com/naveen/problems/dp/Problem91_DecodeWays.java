@@ -26,37 +26,32 @@ import java.util.Map;
 public class Problem91_DecodeWays {
     public static void main(String[] args) {
         Problem91_DecodeWays sol = new Problem91_DecodeWays();
-        System.out.println(sol.numDecodings("226"));
+        //System.out.println(sol.numDecodings("17"));
+        String s = "17";
+        int[] dp = new int[s.length()];
+        System.out.println(sol.count(s.toCharArray(), 0, s.length(), dp));
     }
+
     public int numDecodings(String s) {
-        Map<Integer, Integer> map = new HashMap<>();
-        return count(s, 0, map);
-    }
-
-    int count(String s, int p, Map<Integer, Integer> map) {
         int n = s.length();
-        if (p == n) return 1;
-        if (map.containsKey(p)) return map.get(p);
-        if (s.charAt(p) == '0') return 0;
-        int res = count(s, p + 1, map);
-        if (p + 1 < n && (s.charAt(p) == '1' || s.charAt(p) == '2' && s.charAt(p + 1) < '7'))
-            res += count(s, p + 2, map);
-        map.put(p, res);
-        return res;
-    }
-
-    int count2(String s) {
-        int n = s.length();
+        char[] chars = s.toCharArray();
         int[] dp = new int[n + 1];
         dp[n] = 1;
         for (int i = n - 1; i >= 0; i--) {
-            if (s.charAt(i) != '0') {
-                dp[i] = dp[i + 1];
-                if (i + 1 < n && (s.charAt(i) == '1' || s.charAt(i) == '2' && s.charAt(i + 1) < '7')) {
-                    dp[i] += dp[i + 2];
-                }
-            }
+            dp[i] = (chars[i] == '0') ? 0 : dp[i + 1];
+            dp[i] += (i + 1 < n && (chars[i] == '1' || chars[i] == '2' && chars[i + 1] <= '6')) ? dp[i + 2] : 0;
         }
         return dp[0];
+    }
+
+    int count(char[] c, int i, int n, int[] dp) {
+        if (i >= n) return 1;
+        if (dp[i] != 0) return dp[i];
+        if (c[i] == '0') return 0;
+        int ways = count(c, i + 1, n, dp);
+        if (i + 1 < n && (c[i] == '1' || c[i] == '2' && c[i + 1] <= '6'))
+            ways += count(c, i + 2, n, dp);
+        dp[i] = ways;
+        return dp[i];
     }
 }
