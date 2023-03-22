@@ -1,4 +1,4 @@
-package com.naveen.problems.strings;
+package com.naveen.problems.dp;
 
 import java.util.HashMap;
 import java.util.Map;
