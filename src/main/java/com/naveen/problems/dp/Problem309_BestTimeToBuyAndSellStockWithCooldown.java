@@ -22,7 +22,7 @@ public class Problem309_BestTimeToBuyAndSellStockWithCooldown {
     }
 
     private int maxProfit(int[] a, int i, int n, boolean isBuying, Map<String, Integer> map) {
-        if (i == n) return 0;
+        if (i >= n) return 0;
         String mkey = i + ":" + isBuying;
         if (map.containsKey(mkey)) return map.get(mkey);
         int cooldown = maxProfit(a, i + 1, n, isBuying, map);
