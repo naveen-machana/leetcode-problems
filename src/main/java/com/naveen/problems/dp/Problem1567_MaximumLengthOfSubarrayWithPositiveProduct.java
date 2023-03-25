@@ -58,7 +58,7 @@ public class Problem1567_MaximumLengthOfSubarrayWithPositiveProduct {
                 }
                 end++;
             }
-            if (c % 2 == 0) ans = Math.max(ans, end - st + 1);
+            if (c % 2 == 0) ans = Math.max(ans, end - st);
             else {
                 if (sn != -1) ans = Math.max(ans, end - 1 - sn);
                 if (en != -1) ans = Math.max(ans, en - st);
