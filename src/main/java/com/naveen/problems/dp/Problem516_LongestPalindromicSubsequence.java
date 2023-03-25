@@ -30,6 +30,7 @@ public class Problem516_LongestPalindromicSubsequence {
         dp.put(key, res);
         return dp.get(key);
     }
+
     public int longestPalindromeSubseq(String s) {
         StringBuilder sb = new StringBuilder(s);
         int n = s.length();

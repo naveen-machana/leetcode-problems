@@ -1,4 +1,4 @@
-package com.naveen.problems.strings;
+package com.naveen.problems.dp;
 
 // https://leetcode.com/problems/is-subsequence/description/
 // Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
