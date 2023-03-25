@@ -1,4 +1,4 @@
-package com.naveen.problems.strings;
+package com.naveen.problems.dp;
 
 // https://leetcode.com/problems/longest-palindromic-substring/
 // 5. Longest Palindromic Substring
