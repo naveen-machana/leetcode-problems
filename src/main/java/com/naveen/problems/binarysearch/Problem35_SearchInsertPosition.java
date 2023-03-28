@@ -10,11 +10,10 @@ package com.naveen.problems.binarysearch;
 public class Problem35_SearchInsertPosition {
     public int searchInsert(int[] a, int target) {
         int st = 0, end = a.length;
-
         while (st < end) {
             int m = (st + end)/2;
             if (a[m] == target) return m;
-            if (a[m] > target) end = m;
+            else if (a[m] > target) end = m;
             else st = m + 1;
         }
         return st;
