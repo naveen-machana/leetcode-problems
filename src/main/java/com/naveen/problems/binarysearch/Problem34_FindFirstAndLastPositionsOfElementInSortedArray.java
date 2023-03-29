@@ -9,29 +9,27 @@ package com.naveen.problems.binarysearch;
 // You must write an algorithm with O(log n) runtime complexity.
 public class Problem34_FindFirstAndLastPositionsOfElementInSortedArray {
     public int[] searchRange(int[] a, int target) {
-        int st = 0, end = a.length - 1;
-        int first = -1;
-        while (st <= end) {
-            int m = (st + end)/2;
+        int l = 0, r = a.length - 1;
+        int[] res = {-1, -1};
+        while (l <= r) {
+            int m = (l + r)/2;
             if (a[m] == target) {
-                first = m;
-                end = m - 1;
+                res[0] = m;
+                r = m - 1;
             }
-            else if (a[m] > target) end = m - 1;
-            else st = m + 1;
+            else if (a[m] > target) r = m - 1;
+            else l = m + 1;
         }
-
-        int last = -1;
-        st = 0; end = a.length - 1;
-        while (st <= end) {
-            int m = (st + end)/2;
+        if (res[0] == -1) return res;
+        l = res[0]; r = a.length - 1;
+        while (l <= r) {
+            int m = (l + r)/2;
             if (a[m] == target) {
-                last = m;
-                st = m + 1;
+                res[1] = m;
+                l = m + 1;
             }
-            else if (a[m] > target) end = m - 1;
-            else st = m + 1;
+            else r = m - 1;
         }
-        return new int[]{first, last};
+        return res;
     }
 }
