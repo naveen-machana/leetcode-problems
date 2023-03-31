@@ -24,20 +24,21 @@ public class Problem42_TrappingRainWater {
     }
 
     public int trap(int[] a) {
-        int n = a.length, res = 0;
         ArrayDeque<Integer> stack = new ArrayDeque<>();
-
-        for (int i = 0; i < n; i++) {
-            if (stack.isEmpty() || a[stack.peek()] > a[i]) stack.push(i);
+        int sum = 0;
+        for (int i = 0; i < a.length; i++) {
+            int bar = a[i];
+            if (stack.isEmpty() || a[stack.peek()] > bar) stack.push(i);
             else {
-                while (!stack.isEmpty() && a[stack.peek()] <= a[i]) {
-                    int barIndex = stack.pop();
-                    res += stack.isEmpty() ? 0 : (i - stack.peek() - 1) * (Math.min(a[i], a[stack.peek()]) - a[barIndex]);
+                while (!stack.isEmpty() && a[stack.peek()] <= bar) {
+                    int topIndex = stack.pop();
+                    int h = stack.isEmpty() ? i : Math.min(bar, a[stack.peek()]) - a[topIndex];
+                    int w = stack.isEmpty() ? 0 : i - stack.peek() - 1;
+                    sum += h * w;
                 }
                 stack.push(i);
             }
         }
-
-        return res;
+        return sum;
     }
 }
