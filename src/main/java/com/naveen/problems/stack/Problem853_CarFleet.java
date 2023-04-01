@@ -36,6 +36,24 @@ public class Problem853_CarFleet {
         int[] position = {6,8}, speed = {3,2};
         System.out.println(sol.carFleet(10, position, speed));
     }
+    // approach 1
+    public int carFleet2(int target, int[] position, int[] speed) {
+        int n = position.length;
+        int[][] cars = new int[n][2];
+        for (int i = 0; i < n; i++) cars[i] = new int[]{position[i], speed[i]};
+        Arrays.sort(cars, (one, two) -> two[0] - one[0]);
+        LinkedList<int[]> stack = new LinkedList<>();
+        for (int[] car : cars) {
+            if (stack.isEmpty()) { stack.push(car); continue; }
+            double t1 = (double)(target - car[0])/car[1];
+            int[] top = stack.peek();
+            double t2 = (double)(target - top[0])/top[1];
+            if (t1 > t2) stack.push(car);
+        }
+        return stack.size();
+    }
+
+    // approach 2
     public int carFleet(int target, int[] position, int[] speed) {
         int n = position.length;
         int[][] cars = new int[n][2];
@@ -44,7 +62,8 @@ public class Problem853_CarFleet {
         LinkedList<Double> stack = new LinkedList<>();
         for (int[] car : cars) {
             stack.push((double)(target - car[0])/car[1]);
-            if (stack.size() >= 2 && stack.get(0) <= stack.get(1)) stack.pop();
+            if (stack.size() >= 2 && stack.get(0) <= stack.get(1))
+                stack.pop();
         }
         return stack.size();
     }
