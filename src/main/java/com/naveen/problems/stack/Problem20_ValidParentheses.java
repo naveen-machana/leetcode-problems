@@ -15,18 +15,12 @@ import java.util.Set;
 // Every close bracket has a corresponding open bracket of the same type.
 public class Problem20_ValidParentheses {
     public boolean isValid(String s) {
-        Map<Character, Character> endChars = Map.of(')', '(', ']', '[', '}', '{');
+        Map<Character, Character> map = Map.of('(', ')', '[', ']', '{', '}');
         ArrayDeque<Character> stack = new ArrayDeque<>();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (endChars.containsKey(c)) {
-                if (stack.isEmpty() || stack.pop() != endChars.get(c)) {
-                    return false;
-                }
-            }
-            else {
-                stack.push(c);
-            }
+            if (map.containsKey(c)) stack.push(map.get(c));
+            else if (stack.isEmpty() || c != stack.pop()) return false;
         }
         return stack.isEmpty();
     }

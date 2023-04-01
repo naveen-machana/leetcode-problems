@@ -9,27 +9,16 @@ import java.util.List;
 // Input: n = 3
 // Output: ["((()))","(()())","(())()","()(())","()()()"]
 public class Problem22_GenerateParentheses {
-    public static void main(String[] args) {
-        Problem22_GenerateParentheses s = new Problem22_GenerateParentheses();
-        System.out.println(s.generateParenthesis(3));
-    }
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<>();
-        generate(res, 0, 0, n, "");
+        String sb = "";
+        generate(0, 0, n, res, sb);
         return res;
     }
 
-    private void generate(List<String> res, int open, int closed, int n, String cur) {
-        if (cur.length() == 2 * n) {
-            res.add(cur);
-            return;
-        }
-
-        if (open < n) {
-            generate(res, open + 1, closed, n, cur + '(');
-        }
-        if (closed < open) {
-            generate(res, open, closed + 1, n, cur + ')');
-        }
+    void generate(int open, int closed, int n, List<String> res, String sb) {
+        if (sb.length() == 2 * n) { res.add(sb); return;}
+        if (open < n) generate(open + 1, closed, n, res, sb + "(");
+        if (closed < open) generate(open, closed + 1, n, res, sb + ")");
     }
 }
