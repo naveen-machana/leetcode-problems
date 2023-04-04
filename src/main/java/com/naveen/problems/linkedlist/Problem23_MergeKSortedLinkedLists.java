@@ -21,7 +21,7 @@ merging them into one sorted list:
 1->1->2->3->4->4->5->6
 * */
 public class Problem23_MergeKSortedLinkedLists {
-    public ListNode mergeKLists(ListNode[] lists) {
+    public ListNode mergeKLists2(ListNode[] lists) {
         ListNode start = new ListNode();
         ListNode tail = start;
         PriorityQueue<ListNode> pq = new PriorityQueue<>((a, b) -> a.val - b.val);
@@ -35,5 +35,39 @@ public class Problem23_MergeKSortedLinkedLists {
             if (temp.next != null) pq.offer(temp.next);
         }
         return  start.next;
+    }
+
+    public ListNode mergeKLists(ListNode[] lists) {
+        return mergeSort(lists, 0, lists.length - 1);
+    }
+
+    private ListNode mergeSort(ListNode[] lists, int st, int end) {
+        if (st > end) return null;
+        if (st == end) return lists[st];
+        int m = (st + end)/2;
+        ListNode left = mergeSort(lists, st, m);
+        ListNode right = mergeSort(lists, m + 1, end);
+        return mergeTwoLists(left, right);
+    }
+
+    private ListNode mergeTwoLists(ListNode a, ListNode b) {
+        ListNode start = new ListNode();
+        ListNode tail = start;
+
+        while (a != null && b != null) {
+            if (a.val <= b.val) {
+                tail.next = a;
+                a = a.next;
+            }
+            else {
+                tail.next = b;
+                b = b.next;
+            }
+            tail = tail.next;
+        }
+
+        if (a != null) tail.next = a;
+        if (b != null) tail.next = b;
+        return start.next;
     }
 }
