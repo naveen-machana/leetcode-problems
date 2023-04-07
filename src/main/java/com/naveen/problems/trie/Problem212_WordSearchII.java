@@ -1,0 +1,52 @@
+package com.naveen.problems.trie;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Problem212_WordSearchII {
+    private static class Trie {
+        private Trie[] children = new Trie[26];
+        private boolean isEndOfWord;
+        public void add(String word) {
+            Trie cur = this;
+            for (char c : word.toCharArray()) {
+                Trie next = cur.children[c - 'a'];
+                if (next == null) next = new Trie();
+                cur.children[c - 'a'] = next;
+                cur = next;
+            }
+            cur.isEndOfWord = true;
+        }
+    }
+
+    public List<String> findWords(char[][] board, String[] words) {
+        Set<String> res = new HashSet<>();
+        Set<String> visited = new HashSet<>();
+        Trie trie = new Trie();
+        for (String word : words) trie.add(word);
+        int m = board.length, n = board[0].length;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                find(i, j, m, n, trie, visited, board, res, "");
+            }
+        }
+        return new ArrayList<>(res);
+    }
+
+    int[][] rc = {{0, -1}, {0, 1}, {1, 0}, {-1, 0}};
+    private void find(int i, int j, int m, int n, Trie trie, Set<String> visited, char[][] board, Set<String> res, String sb) {
+        String key = i + "#" + j;
+        if (i < 0 || j < 0 || i >= m || j >= n || visited.contains(key)) return;
+        char c = board[i][j];
+        Trie next = trie.children[c - 'a'];
+        if (next == null) return;
+        visited.add(key);
+        sb += c;
+        if (next.isEndOfWord) res.add(sb);
+        for (int[] xy : rc)
+            find(i + xy[0], j + xy[1], m, n, next, visited, board, res, sb);
+        visited.remove(key);
+    }
+}
