@@ -43,10 +43,9 @@ public class Problem212_WordSearchII {
         Trie next = trie.children[c - 'a'];
         if (next == null) return;
         visited.add(key);
-        sb += c;
+        sb = sb + c;
         if (next.isEndOfWord) res.add(sb);
-        for (int[] xy : rc)
-            find(i + xy[0], j + xy[1], m, n, next, visited, board, res, sb);
+        for (int[] xy : rc) find(i + xy[0], j + xy[1], m, n, next, visited, board, res, sb);
         visited.remove(key);
     }
 }
