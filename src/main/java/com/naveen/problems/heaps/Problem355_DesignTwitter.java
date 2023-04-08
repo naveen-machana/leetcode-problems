@@ -71,13 +71,12 @@ public class Problem355_DesignTwitter {
         public List<Integer> getNewsFeed(int userId) {
             PriorityQueue<Node> pq = new PriorityQueue<>((p1, p2) -> p2.data[0] - p1.data[0]);
             Set<Integer> follows = getFollowers(userId);
-            Node[] klists = new Node[follows.size()];
             List<Integer> res = new ArrayList<>();
-            int k = 0;
-            for (int fId : follows) klists[k++] = getPosts(fId).getFirst();
-            for (Node e : klists)
-                if (e != null && e.data != null)
-                    pq.offer(e);
+            for (int fId : follows) {
+                Node node = getPosts(fId).getFirst();
+                if (node != null && node.data != null)
+                    pq.offer(node);
+            }
 
             int i = 10;
             while (i-- > 0 && !pq.isEmpty()) {
