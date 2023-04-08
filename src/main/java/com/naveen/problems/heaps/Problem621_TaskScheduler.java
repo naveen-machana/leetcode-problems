@@ -49,15 +49,14 @@ public class Problem621_TaskScheduler {
         for (char c : tasks) count[c - 'A']++;
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         for (int c : count)
-            if (c != 0 )
-                pq.offer(c);
+            if (c != 0) pq.offer(c);
         LinkedList<int[]> q = new LinkedList<>();
         int time = 0;
         while (!pq.isEmpty() || !q.isEmpty()) {
             time++;
             if (!pq.isEmpty()) {
-                int cnt = pq.poll();
-                if (--cnt > 0) q.offer(new int[]{cnt, time + n});
+                int freq = pq.poll();
+                if (--freq > 0) q.offer(new int[]{freq, time + n});
             }
             if (!q.isEmpty() && q.peek()[1] == time) pq.offer(q.poll()[0]);
         }
