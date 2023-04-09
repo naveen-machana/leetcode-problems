@@ -13,41 +13,29 @@ Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 public class Problem46_Permutations {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
-        permutations(nums, res, 0);
+        permute(nums, res, 0);
         return res;
     }
 
-    private void permutations(int[] a, List<List<Integer>> res, int st) {
-        if (st == a.length) {
-            ArrayList<Integer> temp = new ArrayList<>();
-            for (int i : a) temp.add(i);
-            res.add(temp);
+    private void permute(int[] nums, List<List<Integer>> res, int i) {
+        if (i == nums.length) {
+            ArrayList<Integer> cur = new ArrayList<>();
+            for (int j = 0; j < nums.length; j++) cur.add(nums[j]);
+            res.add(cur);
             return;
         }
-        for (int i = st; i < a.length; i++) {
-            swap(a, i, st);
-            permutations(a, res, st + 1);
-            swap(a, i, st);
+        else {
+            for (int j = i; j < nums.length; j++) {
+                swap(nums, i, j);
+                permute(nums, res, i + 1);
+                swap(nums, i, j);
+            }
         }
     }
 
     private void swap(int[] a, int i, int j) {
-        int t = a[i];
+        int k = a[i];
         a[i] = a[j];
-        a[j] = t;
-    }
-
-    private void permutations2(int[] a, List<List<Integer>> res, List<Integer> cur) {
-        if (cur.size() == a.length) {
-            res.add(new ArrayList<>(cur));
-            return;
-        }
-
-        for (int i = 0; i < a.length; i++) {
-            if (cur.contains(a[i])) continue;
-            cur.add(a[i]);
-            permutations2(a, res, cur);
-            cur.remove(cur.size() - 1);
-        }
+        a[j] = k;
     }
 }

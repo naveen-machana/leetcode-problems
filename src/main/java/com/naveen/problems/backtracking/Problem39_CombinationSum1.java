@@ -29,14 +29,16 @@ public class Problem39_CombinationSum1 {
     }
 
     private void sum(int[] a, int remain, int st, List<List<Integer>> res, List<Integer> temp) {
-        if (remain < 0) return;
-        else if (remain == 0) { res.add(new ArrayList<>(temp)); return; }
+        if (remain == 0) {
+            res.add(new ArrayList<>(temp));
+            return;
+        }
+        else if (remain < 0 || st >= a.length) return;
         else {
-            for (int i = st; i < a.length; i++) {
-                temp.add(a[i]);
-                sum(a, remain - a[i], i, res, temp);
-                temp.remove(temp.size() - 1);
-            }
+            temp.add(a[st]);
+            sum(a, remain - a[st], st, res, temp);
+            temp.remove(temp.size() - 1);
+            sum(a, remain, st + 1, res, temp);
         }
     }
 }
