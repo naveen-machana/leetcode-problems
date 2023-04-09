@@ -19,13 +19,16 @@ public class Problem90_Subsets2 {
         return res;
     }
 
-    private void subsets(int[] a, List<List<Integer>> res, List<Integer> cur, int st) {
-        res.add(new ArrayList<>(cur));
-        for (int i = st; i < a.length; i++) {
-            if (i > st && a[i] == a[i - 1]) continue;
-            cur.add(a[i]);
-            subsets(a, res, cur, i + 1);
-            cur.remove(cur.size() - 1);
+    private void subsets(int[] nums, List<List<Integer>> res, List<Integer> cur, int i) {
+        if (i == nums.length) {
+            res.add(new ArrayList<>(cur));
+            return;
         }
+        cur.add(nums[i]);
+        subsets(nums, res, cur, i + 1);
+        cur.remove(cur.size() - 1);
+        int j = i + 1;
+        while (j < nums.length && nums[j] == nums[j - 1]) j++;
+        subsets(nums, res, cur, j);
     }
 }
