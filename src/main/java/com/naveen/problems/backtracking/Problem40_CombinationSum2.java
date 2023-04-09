@@ -25,22 +25,25 @@ Output:
 * */
 public class Problem40_CombinationSum2 {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(candidates);
-        sum(candidates, target, 0, res, new ArrayList<>());
+        List<List<Integer>> res = new ArrayList<>();
+        combinationSum(candidates, res, new ArrayList<>(), 0, target);
         return res;
     }
 
-    private void sum(int[] a, int remain, int st, List<List<Integer>> res, List<Integer> temp) {
-        if (remain < 0) return;
-        else if (remain == 0) { res.add(new ArrayList<>(temp)); return; }
+    private void combinationSum(int[] candidates, List<List<Integer>> res, List<Integer> cur, int i, int target) {
+        if (target == 0) {
+            res.add(new ArrayList<>(cur));
+            return;
+        }
+        else if (i >= candidates.length || target < 0) return;
         else {
-            for (int i = st; i< a.length; i++) {
-                if (i > st && a[i] == a[i - 1]) continue;
-                temp.add(a[i]);
-                sum(a, remain - a[i], i + 1, res, temp);
-                temp.remove(temp.size() - 1);
-            }
+            cur.add(candidates[i]);
+            combinationSum(candidates, res, cur, i + 1, target - candidates[i]);
+            cur.remove(cur.size() - 1);
+            int j = i + 1;
+            while (j < candidates.length && candidates[j] == candidates[j - 1]) j++;
+            combinationSum(candidates, res, cur, j, target);
         }
     }
 }
