@@ -36,4 +36,32 @@ public class Problem46_Permutations {
         }
     }
 
+    public List<List<Integer>> permute2(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        permute(nums, res, 0);
+        return res;
+    }
+
+    private void permute(int[] nums, List<List<Integer>> res, int i) {
+        if (i == nums.length) {
+            ArrayList<Integer> cur = new ArrayList<>();
+            for (int j = 0; j < nums.length; j++) cur.add(nums[j]);
+            res.add(cur);
+            return;
+        }
+        else {
+            for (int j = i; j < nums.length; j++) {
+                swap(nums, i, j);
+                permute(nums, res, i + 1);
+                swap(nums, i, j);
+            }
+        }
+    }
+
+    private void swap(int[] a, int i, int j) {
+        int k = a[i];
+        a[i] = a[j];
+        a[j] = k;
+    }
+
 }
