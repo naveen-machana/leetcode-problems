@@ -1,4 +1,4 @@
-package com.naveen.problems.strings;
+package com.naveen.problems.backtracking;
 
 import java.util.*;
 
