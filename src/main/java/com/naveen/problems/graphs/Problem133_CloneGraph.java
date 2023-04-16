@@ -24,23 +24,24 @@ public class Problem133_CloneGraph {
     }
     public Node cloneGraph(Node node) {
         if (node == null) return null;
-        Map<Node, Node> clone = new HashMap<>();
+        Map<Node, Node> cloned = new HashMap<>();
         Set<Node> visited = new HashSet<>();
-        dfs(node, clone, visited);
-        return clone.get(node);
+        dfs(node, visited, cloned);
+        return cloned.get(node);
     }
 
-    private void dfs(Node node, Map<Node, Node> clone, Set<Node> visited) {
+    private void dfs(Node node, Set<Node> visited, Map<Node, Node> cloned) {
         visited.add(node);
-        clone.put(node, new Node(node.val));
+        cloned.put(node, new Node(node.val));
+
         for (Node adj : node.neighbors) {
             if (!visited.contains(adj))
-                dfs(adj, clone, visited);
+                dfs(adj, visited, cloned);
         }
-        Node nodeCloned = clone.get(node);
+
         for (Node adj : node.neighbors) {
-            Node adjCloned = clone.get(adj);
-            nodeCloned.neighbors.add(adjCloned);
+            Node newAdj = cloned.get(adj);
+            cloned.get(node).neighbors.add(newAdj);
         }
     }
 }
