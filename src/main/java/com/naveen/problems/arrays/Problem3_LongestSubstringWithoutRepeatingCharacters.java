@@ -11,7 +11,7 @@ import java.util.Map;
 public class Problem3_LongestSubstringWithoutRepeatingCharacters {
     public static void main(String[] args) {
         Problem3_LongestSubstringWithoutRepeatingCharacters s = new Problem3_LongestSubstringWithoutRepeatingCharacters();
-        s.lengthOfLongestSubstring("abcabcbb");
+        System.out.println(s.lengthOfLongestSubstring("abcabcbb"));
     }
     public int lengthOfLongestSubstring(String s) {
         int max = 0;
