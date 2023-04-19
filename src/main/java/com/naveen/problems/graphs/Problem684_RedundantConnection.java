@@ -17,7 +17,7 @@ import java.util.Set;
 // If there are multiple answers, return the answer that occurs last in the input.
 public class Problem684_RedundantConnection {
 
-    public int[] findRedundantConnection(int[][] edges) {
+    public int[] findRedundantConnection2(int[][] edges) {
         int n = edges.length + 1;
         List<List<Integer>> g = new ArrayList<>(n);
         for (int i = 0; i < n; i++) g.add(new ArrayList<>());
@@ -41,5 +41,27 @@ public class Problem684_RedundantConnection {
             if (!seen.contains(adj) && dfs(g, adj, d, seen))
                 return true;
         return false;
+    }
+
+    public int[] findRedundantConnection(int[][] edges) {
+        int n = edges.length;
+        int[] rep = new int[n];
+        for (int i = 0; i < n; i++) rep[i] = i;
+        for (int[] e : edges) if (!union(e[0] - 1, e[1] - 1, rep)) return e;
+        return new int[]{-1, -1};
+    }
+
+    private int find(int a, int[] rep) {
+        if (a == rep[a]) return a;
+        rep[a] = find(rep[a], rep);
+        return rep[a];
+    }
+
+    private boolean union(int a, int b, int[] rep) {
+        int ra = find(a, rep);
+        int rb = find(b, rep);
+        if (ra == rb) return false;
+        rep[ra] = rb;
+        return true;
     }
 }
