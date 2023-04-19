@@ -1,15 +1,13 @@
 package com.naveen.problems.graphs;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class Problem323_NumberOfConnectedComponentsInAnUndirectedGraph {
     public static void main(String[] args) {
-        int[][] a = {{1,0,0,1},{0,1,1,0},{0,1,1,1},{1,0,1,1}};
+        int[][] a = {{1, 0, 0, 1}, {0, 1, 1, 0}, {0, 1, 1, 1}, {1, 0, 1, 1}};
         Problem323_NumberOfConnectedComponentsInAnUndirectedGraph sol = new Problem323_NumberOfConnectedComponentsInAnUndirectedGraph();
         int res = sol.totalConnectedComp(a, a.length);
         System.out.println(res);
     }
+
     public int totalConnectedComp(int[][] a, int n) {
         int[] rep = new int[n];
         for (int i = 0; i < n; i++) rep[i] = i;
