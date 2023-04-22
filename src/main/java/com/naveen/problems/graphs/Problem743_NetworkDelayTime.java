@@ -16,38 +16,23 @@ public class Problem743_NetworkDelayTime {
         System.out.println(networkDelayTime(times, 4, 2));
     }
     public static int networkDelayTime(int[][] times, int n, int k) {
-        Map<Integer, Map<Integer, Integer>> g = new HashMap<>();
-        for (int[] e : times)
-            g.computeIfAbsent(e[0], key -> new HashMap<>()).put(e[1], e[2]);
+        List<List<List<Integer>>> g = new ArrayList<>();
+        for (int i = 0; i <= n; i++) g.add(new ArrayList<>());
+        for (int[] e : times) g.get(e[0]).add(List.of(e[1], e[2]));
 
-        boolean[] visited = new boolean[n + 1];
-        PriorityQueue<Node> pq = new PriorityQueue<>();
-        pq.offer(new Node(k, 0));
+        PriorityQueue<List<Integer>> pq = new PriorityQueue<>((one, two) -> one.get(1) - two.get(1));
+        pq.offer(List.of(k, 0));
+        Set<Integer> visited = new HashSet<>();
 
-        int max = -1;
+        int cost = Integer.MAX_VALUE;
         while (!pq.isEmpty()) {
-            Node cur = pq.poll();
-            int curw = cur.w, curv = cur.v;
-            if (visited[curv]) continue;
-            visited[curv] = true;
-            max = curw;
-            n--;
-            if (g.containsKey(curv)) {
-                for (int next : g.get(curv).keySet())
-                    pq.offer(new Node(next, curw + g.get(curv).get(next)));
-            }
+            List<Integer> cur = pq.poll();
+            if (visited.contains(cur.get(0))) continue;
+            cost = cur.get(1);
+            visited.add(cur.get(0));
+            for (List<Integer> adj : g.get(cur.get(0))) pq.offer(List.of(adj.get(0), adj.get(1) + cur.get(1)));
         }
 
-        return 0 == n ? max : -1;
-    }
-
-    private static class Node implements Comparable<Node> {
-        int v, w;
-        public Node(int v, int w) {
-            this.v = v; this.w = w;
-        }
-        public int compareTo(Node o) {
-            return w - o.w;
-        }
+        return n == visited.size() ? cost : -1;
     }
 }
