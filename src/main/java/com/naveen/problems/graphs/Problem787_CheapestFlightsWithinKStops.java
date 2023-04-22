@@ -13,25 +13,31 @@ public class Problem787_CheapestFlightsWithinKStops {
         int[][] f = {{0,1,100},{1,2,100},{0,2,500}};
         System.out.println(findCheapestPrice(3, f, 0, 2, 1));
     }
-    public static int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
-        Map<Integer, Map<Integer, Integer>> g = new HashMap<>();
-        for (int[] f : flights)
-            g.computeIfAbsent(f[0], key -> new HashMap<>()).put(f[1], f[2]);
 
-        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
-        pq.offer(new int[]{0, src, k + 1});
-        while (!pq.isEmpty()) {
-            int[] cur = pq.poll();
-            int price = cur[0];
-            int curv = cur[1];
-            int steps = cur[2];
-            if (curv == dst) return price;
-            if (steps <= 0) continue;
-            Map<Integer, Integer> adj = g.getOrDefault(curv, Collections.EMPTY_MAP);
-            for (int next : adj.keySet()) {
-                pq.offer(new int[]{price + adj.get(next), next, steps - 1});
+    public static int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+        List<List<List<Integer>>> g = new ArrayList<>();
+        for (int i = 0; i < n; i++) g.add(new ArrayList<>());
+        for (int[] f : flights) g.get(f[0]).add(List.of(f[1], f[2]));
+
+        Queue<List<Integer>> q = new LinkedList<>();
+        q.add(List.of(0, src, 0)); // stops, vertex, distance;
+        int[] distances = new int[n];
+        Arrays.fill(distances, Integer.MAX_VALUE);
+        distances[src] = 0;
+
+        while (!q.isEmpty()) {
+            List<Integer> cur = q.poll();
+            int v = cur.get(1), stops = cur.get(0), distance = cur.get(2);
+            if (stops > k) continue;
+            for (List<Integer> adj : g.get(v)) {
+                int adjV = adj.get(0), adjD = adj.get(1);
+                if (distance + adjD < distances[adjV] && stops <= k) {
+                    distances[adjV] = distance + adjD;
+                    q.offer(List.of(stops + 1, adjV, distances[adjV]));
+                }
             }
         }
-        return -1;
+
+        return distances[dst] == Integer.MAX_VALUE ? -1 : distances[dst];
     }
 }
