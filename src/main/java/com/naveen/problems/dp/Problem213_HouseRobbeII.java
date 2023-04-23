@@ -19,26 +19,15 @@ public class Problem213_HouseRobbeII {
     }
     public int rob(int[] nums) {
         int n = nums.length;
-        if (nums.length == 1) return nums[0];
-        return Math.max(rob(nums, 0, n - 2), rob(nums, 1, n - 1));
+        if (n == 1) return nums[0];
+        return Math.max(rob(nums, 0, n - 1), rob(nums, 1, n));
     }
-
-    private int rob(int[] nums, int st, int end) {
-        int[] dp = new int[end - st + 1];
-        dp[0] = nums[st];
-        if (dp.length > 1) dp[1] = Math.max(nums[st], nums[st + 1]);
-        for (int i = 2; i < dp.length; i++)
-            dp[i] = Math.max(nums[st + i] + dp[i - 2], dp[i - 1]);
-        return dp[dp.length - 1];
-    }
-
-    private int rob2(int[] a, int lo, int hi) {
-        int include = 0, exclude = 0;
-        for (int j = lo; j <= hi; j++) {
-            int i = include, e = exclude;
-            include = e + a[j];
-            exclude = Math.max(i, e);
-        }
-        return Math.max(include, exclude);
+    private int rob(int[] nums, int st, int n) {
+        int[] dp = new int[n];
+        dp[st] = nums[st];
+        if (st + 1 < n) dp[st + 1] = Math.max(dp[st], nums[st + 1]);
+        for (int i = st + 2; i < n; i++)
+            dp[i] = Math.max(nums[i] + dp[i - 2], dp[i - 1]);
+        return dp[n - 1];
     }
 }
