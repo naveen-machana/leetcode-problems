@@ -24,7 +24,7 @@ public class Problem66_PlusOne {
         int n = digits.length;
         for (int i = n - 1; i >= 0; i--) {
             if (digits[i] < 9) {
-                digits[i] = digits[i]++;
+                digits[i]++;
                 return digits;
             }
             digits[i] = 0;
