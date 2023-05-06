@@ -14,40 +14,31 @@ package com.naveen.problems.strings;
 public class Problem28_FindIndexOfFirstOccurrenceInAString {
     public int strStr(String haystack, String needle) {
         int hp = 0, np = 0, m = haystack.length(), n = needle.length();
-        if (m < n) return -1;
         int[] lps = lps(needle);
-        char[] hchars = haystack.toCharArray(), nchars = needle.toCharArray();
-
+        if (m < n) return -1;
         while (hp < m) {
-            if (hchars[hp] == nchars[np]) {
+            if (haystack.charAt(hp) == needle.charAt(np)) {
                 hp++; np++;
                 if (np == n) return hp - n;
             }
             else {
                 if (np == 0) hp++;
-                else {
-                    np = lps[np - 1];
-                }
+                else np = lps[np - 1];
             }
         }
         return -1;
     }
 
-    int[] lps(String needle) {
-        int n = needle.length();
-        char[] chars = needle.toCharArray();
+    int[] lps(String str) {
+        int n = str.length();
         int[] lps = new int[n];
-        int j = 1, prev = 0;
+        char[] chars = str.toCharArray();
+        int i = 0, j = 1;
         while (j < n) {
-            if (chars[j] == chars[prev]) {
-                prev++;
-                lps[j++] = prev;
-            }
+            if (chars[i] == chars[j]) lps[j++] = ++i;
             else {
-                if (prev == 0) lps[j++] = 0;
-                else {
-                    prev = lps[prev - 1];
-                }
+                if (i == 0) lps[j++] = 0;
+                else i = lps[i - 1];
             }
         }
         return lps;
