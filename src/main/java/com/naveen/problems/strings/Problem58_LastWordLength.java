@@ -8,13 +8,12 @@ package com.naveen.problems.strings;
 // The last word is "World" with length 5.
 public class Problem58_LastWordLength {
     public int lengthOfLastWord(String s) {
-        int length = 0;
-        for (int i = s.length() - 1; i >= 0; i--) {
-            if (s.charAt(i) != ' ') length++;
-            else {
-                if (length > 0) return length;
-            }
+        int i = s.length() - 1, size = 0;
+        while (i >= 0 && s.charAt(i) == ' ') i--;
+        while (i >= 0 && s.charAt(i) != ' ') {
+            size++;
+            i--;
         }
-        return length;
+        return size;
     }
 }
