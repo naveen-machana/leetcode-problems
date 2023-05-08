@@ -20,52 +20,19 @@ You can assume that moves is valid (i.e., it follows the rules of Tic-Tac-Toe), 
 * */
 public class Problem1275_FindWinnerTicTacToe {
     public String tictactoe(int[][] moves) {
-        char[][] board = new char[3][3];
-        for (int i = 0; i < 3; i++) Arrays.fill(board[i], ' ');
-        boolean playerA = false; char playerChar = 'O';
-        for (int[] move : moves) {
-            playerA = !playerA;
-            playerChar = playerA ? 'X' : 'O';
-            board[move[0]][move[1]] = playerChar;
+        int[] a = new int[8], b = new int[8];
+        for (int i = 0; i < moves.length; i++) {
+            int x = moves[i][0], y = moves[i][1], id = i % 2;
+            int[] player = id == 0 ? a : b;
+            player[x]++;
+            player[y + 3]++;
+            if (x == y) player[6]++;
+            if (x == 2 - y) player[7]++;
         }
-        String res = "Pending";
-        if (rowMatches(board, playerChar) || colMatches(board, playerChar) || diagonalMatches(board, playerChar))
-            return playerA ? "A" : "B";
-        else if (boardFull(board)) return "Draw";
-        else return res;
-    }
-
-    private boolean rowMatches(char[][] board, char playerChar) {
-        for (int i = 0; i < 3; i++)  {
-            boolean res = true;
-            for (int j = 0; j < 3; j++)
-                res &= board[i][j] == playerChar;
-            if (res) return true;
+        for (int i = 0; i < 8; i++) {
+            if (a[i] == 3) return "A";
+            if (b[i] == 3) return "B";
         }
-        return false;
-    }
-
-    private boolean colMatches(char[][] board, char playerChar) {
-        for (int i = 0; i < 3; i++) {
-            boolean res = true;
-            for (int j = 0; j < 3; j++)
-                res &= board[j][i] == playerChar;
-            if (res) return true;
-        }
-        return false;
-    }
-
-    private boolean diagonalMatches(char[][] board, char playerChar) {
-        if (board[0][0] == playerChar && board[1][1] == playerChar && board[2][2] == playerChar) return  true;
-        if (board[0][2] == playerChar && board[1][1] == playerChar && board[2][0] == playerChar) return  true;
-        return false;
-    }
-
-    private boolean boardFull(char[][] board) {
-        boolean res = true;
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                res &= board[i][j] != ' ';
-        return res;
+        return moves.length == 9 ? "Draw" : "Pending";
     }
 }
