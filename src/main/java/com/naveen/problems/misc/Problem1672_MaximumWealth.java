@@ -2,19 +2,11 @@ package com.naveen.problems.misc;
 
 class Problem1672_MaximumWealth {
     public int maximumWealth(int[][] accounts) {
-        int max = sum(accounts[0]);
-        for (int i = 1; i < accounts.length; i++) {
-            int sum = sum(accounts[i]);
-            max = Math.max(max, sum);
+        int cur = 0, max = 0;
+        for (int i = 0; i < accounts.length; i++) {
+            for (int j = 0; j < accounts[i].length; j++) cur += accounts[i][j];
+            max = Math.max(cur, max); cur = 0;
         }
         return max;
-    }
-
-    public int sum(int[] row) {
-        int sum = 0;
-        for (int i = 0; i < row.length; i++) {
-            sum += row[i];
-        }
-        return sum;
     }
 }
