@@ -1,8 +1,6 @@
 package com.naveen.problems.arrays;
 
-import java.util.ArrayDeque;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /*
 https://leetcode.com/problems/next-greater-element-i/
@@ -23,16 +21,19 @@ Explanation: The next greater element for each value of nums1 is as follows:
 * */
 public class Problem496_NextGreaterElement1 {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-        ArrayDeque<Integer> stack = new ArrayDeque<>();
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums2.length; i++) {
-            while (!stack.isEmpty() && nums2[i] > stack.peek())
-                map.put(stack.pop(), nums2[i]);
-            stack.push(nums2[i]);
-        }
         int[] res = new int[nums1.length];
-        for (int j = 0; j < nums1.length; j++)
-            res[j] = map.getOrDefault(nums1[j], -1);
+        Arrays.fill(res, -1);
+        Map<Integer, Integer> indexes = new HashMap<>();
+        for (int i = 0; i < nums1.length; i++) indexes.put(nums1[i], i);
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < nums2.length; i++) {
+            while (!stack.isEmpty() && stack.peek() < nums2[i]) {
+                res[indexes.get(stack.pop())] = nums2[i];
+            }
+            if (indexes.containsKey(nums2[i])) {
+                stack.push(nums2[i]);
+            }
+        }
         return res;
     }
 }
