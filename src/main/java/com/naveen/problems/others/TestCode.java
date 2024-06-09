@@ -3,20 +3,20 @@ package com.naveen.problems.others;
 import java.util.*;
 
 public class TestCode {
-    public int maxNumberOfBalloons(String text) {
-        int res = Integer.MAX_VALUE;
-        String balloon = "balloon";
-        Map<Character, Integer> bCounter = new HashMap<>();
-        for (char c : balloon.toCharArray()) {
-            bCounter.compute(c, (k, v) -> v != null ? v + 1 : 1);
+    public boolean wordPattern(String pattern, String s) {
+        Map<Character, String> fwd = new HashMap<>();
+        Map<String, Character> rev = new HashMap<>();
+        char[] chars = pattern.toCharArray();
+        String[] strs = s.split(" ");
+        if (chars.length != strs.length) return false;
+        for (int i = 0; i < chars.length; i++) {
+            if ((fwd.containsKey(chars[i]) && !fwd.get(chars[i]).equals(strs[i]))
+                    || (rev.containsKey(strs[i]) && !rev.get(strs[i]).equals(chars[i]))) {
+                return false;
+            }
+            fwd.put(chars[i], strs[i]);
+            rev.put(strs[i], chars[i]);
         }
-        Map<Character, Integer> txtCounter = new HashMap<>();
-        for (char c : text.toCharArray()) {
-            txtCounter.compute(c, (k, v) -> v != null ? v + 1 : 1);
-        }
-        for (char c : balloon.toCharArray()) {
-            res = Math.min(res, txtCounter.get(c)/bCounter.get(c));
-        }
-        return res;
+        return true;
     }
 }
